@@ -13,7 +13,7 @@ public class DBHandler  extends SQLiteOpenHelper {
 	 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
  
     // Database Name
     private static final String DATABASE_NAME = "Personreg";
@@ -62,7 +62,7 @@ public class DBHandler  extends SQLiteOpenHelper {
  
         ContentValues values = new ContentValues();
         values.put(KEY_FIRSTNAME, person.getFirstname()); // Person firstname
-        values.put(KEY_FIRSTNAME, person.getFirstname()); // Person firstname
+        values.put(KEY_LASTNAME, person.getLastname()); // Person lastname
         values.put(KEY_PH_NO, person.getMobile()); // Person mobile
         values.put(KEY_BDATE, person.getBday()); // Person bday
  

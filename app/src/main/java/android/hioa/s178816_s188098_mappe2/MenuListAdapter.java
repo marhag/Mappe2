@@ -2,6 +2,7 @@ package android.hioa.s178816_s188098_mappe2;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,7 @@ public class MenuListAdapter extends BaseAdapter {
         Person person = menuListPerson.get(position);
 
         txtName.setText(person.getFirstname()+" " + person.getLastname());
-        txtPhone.setText(person.getMobile());
+        txtPhone.setText(person.getMobile()+"");
 
         return convertView;
 

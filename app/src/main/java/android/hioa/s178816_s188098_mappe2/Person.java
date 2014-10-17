@@ -5,7 +5,8 @@ package android.hioa.s178816_s188098_mappe2;
  */
 public class Person {
     private int id;
-    private String firstname,lastname;
+    private String firstname;
+    private String lastname;
     private int mobile;
     private String bday; // DD/MM/YYYY - can use Date
 
