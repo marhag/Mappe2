@@ -1,17 +1,30 @@
 package android.hioa.s178816_s188098_mappe2;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.support.v4.app.FragmentTransaction;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
+    private MenuFragment listFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        if(savedInstanceState!=null)
+        {
+
+        }
+        else
+        {
+
+        }
     }
 
 
@@ -32,5 +45,11 @@ public class MainActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //can be used for changing fragments
+    public void changeFragment(int i, Person p)
+    {
+
     }
 }

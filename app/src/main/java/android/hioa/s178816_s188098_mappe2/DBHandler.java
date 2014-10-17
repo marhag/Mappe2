@@ -13,7 +13,7 @@ public class DBHandler  extends SQLiteOpenHelper {
 	 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
  
     // Database Name
     private static final String DATABASE_NAME = "Personreg";
@@ -37,8 +37,8 @@ public class DBHandler  extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_PERSONS_TABLE = "CREATE TABLE " + TABLE_PERSONS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_FIRSTNAME + " TEXT,"
-                + KEY_LASTNAME + " TEXT,"+ KEY_PH_NO + " TEXT"
-                + KEY_BDATE + " TEXT,"+ ")";
+                + KEY_LASTNAME + " TEXT,"+ KEY_PH_NO + " TEXT,"
+                + KEY_BDATE + " TEXT"+ ")";
         db.execSQL(CREATE_PERSONS_TABLE);
     }
  
@@ -82,7 +82,7 @@ public class DBHandler  extends SQLiteOpenHelper {
             cursor.moveToFirst();
  
         Person person = new Person(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
+                cursor.getString(1),cursor.getString(2),Integer.parseInt(cursor.getString(3)),cursor.getString(4));
         // return person
         return person;
     }
@@ -103,7 +103,7 @@ public class DBHandler  extends SQLiteOpenHelper {
                 person.setId(Integer.parseInt(cursor.getString(0)));
                 person.setFirstname(cursor.getString(1));
                 person.setLastname(cursor.getString(2));
-                person.setMobile(cursor.getString(3));
+                person.setMobile(Integer.parseInt(cursor.getString(3)));
                 person.setBday(cursor.getString(4));
                 // Adding person to list
                 personList.add(person);

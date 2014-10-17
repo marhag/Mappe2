@@ -5,20 +5,21 @@ package android.hioa.s178816_s188098_mappe2;
  */
 public class Person {
     private int id;
-    private String firstname,lastname,mobile;
+    private String firstname,lastname;
+    private int mobile;
     private String bday; // DD/MM/YYYY - can use Date
 
 
     public Person()
     {}
-    public Person(String fname, String lname, String mob, String day)
+    public Person(String fname, String lname, int mob, String day)
     {
         firstname = fname;
         lastname = lname;
         mobile = mob;
         bday  = day;
     }
-    public Person(int i,String fname, String lname, String mob, String day)
+    public Person(int i,String fname, String lname, int mob, String day)
     {
         id = i;
         firstname = fname;
@@ -51,11 +52,11 @@ public class Person {
         this.lastname = lastname;
     }
 
-    public String getMobile() {
+    public int getMobile() {
         return mobile;
     }
 
-    public void setMobile(String mobile) {
+    public void setMobile(int mobile) {
         this.mobile = mobile;
     }
 
