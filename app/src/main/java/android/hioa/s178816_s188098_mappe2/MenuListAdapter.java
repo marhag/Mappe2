@@ -54,7 +54,7 @@ public class MenuListAdapter extends BaseAdapter {
         Person person = menuListPerson.get(position);
 
         txtName.setText(person.getFirstname()+" " + person.getLastname());
-        txtPhone.setText(person.getMobile()+"");
+        txtPhone.setText(person.getBday()+"");
 
         return convertView;
 

@@ -15,15 +15,13 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DBHandler db = new DBHandler(this);
-        db.addPerson(new Person("Christoffer","Olsen",12312312,"dato"));
-        db.addPerson(new Person("Anders","Gaaseby",12312312,"dato"));
-        db.addPerson(new Person("Lars-Erik","Kasin",12312312,"dato"));
-        db.addPerson(new Person("Joakim","Rishaug",12312312,"dato"));
-        db.addPerson(new Person("Sondre","Boge",12312312,"dato"));
 
-        Log.d("HAR NR 1 NOE ETTERNAVN?", db.getPerson(1).getLastname());
+       /* DBHandler db = new DBHandler(this);
+        Person p = new Person("Mons","Monsen", 12341234,"dato");
+        p.setCustomMessage("NÅ SKAL VI SE HER");
 
+        db.addPerson(p);
+        db.addPerson(new Person("Per","Nilsen", 12341234,"dato"));*/
 
         if(savedInstanceState!=null)
         {

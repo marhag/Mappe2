@@ -9,6 +9,7 @@ public class Person {
     private String lastname;
     private int mobile;
     private String bday; // DD/MM/YYYY - can use Date
+    private String customMessage = "";
 
 
     public Person()
@@ -67,5 +68,13 @@ public class Person {
 
     public void setBday(String bday) {
         this.bday = bday;
+    }
+
+    public String getCustomMessage() {
+        return customMessage;
+    }
+
+    public void setCustomMessage(String customMessage) {
+        this.customMessage = customMessage;
     }
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class DBHandler  extends SQLiteOpenHelper {
 	 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
  
     // Database Name
     private static final String DATABASE_NAME = "Personreg";
@@ -27,6 +28,7 @@ public class DBHandler  extends SQLiteOpenHelper {
     private static final String KEY_LASTNAME = "lastname";
     private static final String KEY_PH_NO = "telefon";
     private static final String KEY_BDATE = "date";
+    private static final String KEY_MESSAGE = "message";
  
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -38,7 +40,7 @@ public class DBHandler  extends SQLiteOpenHelper {
         String CREATE_PERSONS_TABLE = "CREATE TABLE " + TABLE_PERSONS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_FIRSTNAME + " TEXT,"
                 + KEY_LASTNAME + " TEXT,"+ KEY_PH_NO + " TEXT,"
-                + KEY_BDATE + " TEXT"+ ")";
+                + KEY_BDATE + " TEXT,"+ KEY_MESSAGE + " Text)";
         db.execSQL(CREATE_PERSONS_TABLE);
     }
  
@@ -65,6 +67,7 @@ public class DBHandler  extends SQLiteOpenHelper {
         values.put(KEY_LASTNAME, person.getLastname()); // Person lastname
         values.put(KEY_PH_NO, person.getMobile()); // Person mobile
         values.put(KEY_BDATE, person.getBday()); // Person bday
+        values.put(KEY_MESSAGE, person.getCustomMessage()); // Person custom message
  
         // Inserting Row
         db.insert(TABLE_PERSONS, null, values);
@@ -76,13 +79,15 @@ public class DBHandler  extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
  
         Cursor cursor = db.query(TABLE_PERSONS, new String[] { KEY_ID,
-                KEY_FIRSTNAME,KEY_LASTNAME, KEY_PH_NO,KEY_BDATE }, KEY_ID + "=?",
+                KEY_FIRSTNAME,KEY_LASTNAME, KEY_PH_NO, KEY_BDATE, KEY_MESSAGE },
+                KEY_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
  
         Person person = new Person(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1),cursor.getString(2),Integer.parseInt(cursor.getString(3)),cursor.getString(4));
+        person.setCustomMessage(cursor.getString(5));
         // return person
         return person;
     }
@@ -105,6 +110,7 @@ public class DBHandler  extends SQLiteOpenHelper {
                 person.setLastname(cursor.getString(2));
                 person.setMobile(Integer.parseInt(cursor.getString(3)));
                 person.setBday(cursor.getString(4));
+                person.setCustomMessage(cursor.getString(5));
                 // Adding person to list
                 personList.add(person);
             } while (cursor.moveToNext());
@@ -123,6 +129,7 @@ public class DBHandler  extends SQLiteOpenHelper {
         values.put(KEY_LASTNAME, person.getLastname());
         values.put(KEY_PH_NO, person.getMobile());
         values.put(KEY_BDATE,person.getBday());
+        values.put(KEY_MESSAGE,person.getCustomMessage());
  
         // updating row
         return db.update(TABLE_PERSONS, values, KEY_ID + " = ?",
@@ -139,7 +146,7 @@ public class DBHandler  extends SQLiteOpenHelper {
  
  
     // Getting person Count
-    public int getContactsCount() {
+    public int getTotalCount() {
         String countQuery = "SELECT  * FROM " + TABLE_PERSONS;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
