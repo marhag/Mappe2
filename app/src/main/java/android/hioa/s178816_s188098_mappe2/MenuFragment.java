@@ -32,7 +32,9 @@ public class MenuFragment extends ListFragment {
 
 		adapter = new MenuListAdapter(getActivity(), menuListPersons);
 		setListAdapter(adapter);
-        //((MainActivity)getActivity()).setMenuFragment(this);
+
+        //removes up btn in actionbar
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
 	}
 
 	@Override
@@ -40,13 +42,7 @@ public class MenuFragment extends ListFragment {
 
 		// Notify the parent activity of selected person
 		Person person = menuListPersons.get(position);
-       // FragmentTransaction transaction = getFragmentManager()
-       //         .beginTransaction();
-
         changeFragment(person);
-        //ItemFragment itemFragment = new ItemFragment();
-
-        //new CallMenuItem(transaction, itemFragment).execute(String.valueOf(person.getId()));
 	}
 
     public void changeFragment(Person p)

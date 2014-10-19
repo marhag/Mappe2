@@ -59,6 +59,9 @@ public class CreatePerson extends Fragment{
     }
 
     public void updateFragment() {
+        //adding up btn in actionbar
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+
         editFirst = (EditText)getActivity().findViewById(R.id.editFirstname);
         editLast = (EditText)getActivity().findViewById(R.id.editLastname);
         editPhone = (EditText)getActivity().findViewById(R.id.editPhone);
