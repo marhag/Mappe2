@@ -65,9 +65,14 @@ public class MainActivity extends FragmentActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            goToSettings();
-            return true;
+        switch (id)
+        {
+            case android.R.id.home:
+                changeFragment(0,null);
+                return true;
+            case R.id.action_settings:
+                goToSettings();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -82,8 +87,9 @@ public class MainActivity extends FragmentActivity {
                 changeToCreate(p,1);
                 return;
             default:
-                FragmentManager fm = getSupportFragmentManager();
-                fm.popBackStack();
+                getSupportFragmentManager().popBackStackImmediate();;
+                //fm.popBackStack();
+
                 return;
         }
 
@@ -108,7 +114,7 @@ public class MainActivity extends FragmentActivity {
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, cp);
-        transaction.addToBackStack("main");
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 

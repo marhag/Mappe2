@@ -49,7 +49,5 @@ public class MenuFragment extends ListFragment {
     {
         ((MainActivity)getActivity()).changeFragment(1,p);
     }
-    /*public void notifyChange() {
-        adapter.notifyDataSetChanged();
-    }*/
+
 }
