@@ -81,11 +81,8 @@ public class CreatePerson extends Fragment{
         {
             String[] dateArray = date.split("/");
             year = Integer.parseInt(dateArray[2]);
-            Log.d("Year",year + "");
             month = Integer.parseInt(dateArray[1]) - 1;
-            Log.d("Month",month + "");
             day = Integer.parseInt(dateArray[0]);
-            Log.d("Day",day + "");
         }
         datePicker.updateDate(year, month, day);
 
@@ -122,26 +119,13 @@ public class CreatePerson extends Fragment{
         int year = datePicker.getYear();
         int month = datePicker.getMonth() + 1;
         int day = datePicker.getDayOfMonth();
-        person.setBday(year + "/" + month + "/" + day);
+        person.setBday(day+ "/" + month + "/" + year);
 
-        Log.d("KOMMER HIT", "ok");
         DBHandler db = new DBHandler(getActivity());
         if(type.equals("CREATE"))
-        {
             db.addPerson(person);
-        }
         else
-        {
             db.updatePerson(person);
-            Log.d("Update?", "ok");
-        }
-        for(Person p : db.getAllPersons())
-        {
-            Log.d("Finnes i db", p.getFirstname() + p.getLastname());
-        }
-
-
-
     }
 
     @Override
@@ -155,7 +139,7 @@ public class CreatePerson extends Fragment{
         int year = datePicker.getYear();
         int month = datePicker.getMonth() + 1;
         int day = datePicker.getDayOfMonth();
-        date = year + "/" + month + "/" + day;
+        date =  day+ "/" + month + "/" + year;
         //saves
         outState.putInt("id",id);
         outState.putInt("phone",phone);

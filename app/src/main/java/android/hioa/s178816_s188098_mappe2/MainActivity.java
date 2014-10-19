@@ -1,5 +1,6 @@
 package android.hioa.s178816_s188098_mappe2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -20,7 +21,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       /* DBHandler db = new DBHandler(this);
+        /*DBHandler db = new DBHandler(this);
         Person p = new Person("Mons","Monsen", 12341234,"26/11/1993");
         p.setCustomMessage("NÅ SKAL VI SE HER");
 
@@ -65,6 +66,7 @@ public class MainActivity extends FragmentActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            goToSettings();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -108,5 +110,12 @@ public class MainActivity extends FragmentActivity {
         transaction.replace(R.id.container, cp);
         transaction.addToBackStack("main");
         transaction.commit();
+    }
+
+    public void goToSettings()
+    {
+        Intent settings = new Intent(this, Settings.class);
+        startActivity(settings);
+
     }
 }

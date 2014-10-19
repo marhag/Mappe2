@@ -14,7 +14,7 @@ public class TasksLeft {
         -accessible for other apps
         -maybe import contacts from phone?
     - Send sms-function
-    - Settings page
+    - Settings page ( started)
     - fix onBackPressed ( just quits app now)
      */
 }

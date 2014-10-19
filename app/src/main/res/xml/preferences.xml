@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/sms">
+
+        <CheckBoxPreference
+            android:key="checkbox_preference"
+            android:title="@string/serviceOnOff"
+            android:summary="@string/service" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/languageHead">
+        <ListPreference android:title="@string/language"
+            android:key="@string/languageHead"
+            android:entries="@array/language"
+            android:entryValues="@array/langVal" />
+    </PreferenceCategory>
+</PreferenceScreen>
