@@ -70,7 +70,7 @@ public class CreatePerson extends Fragment{
         int month=0;
         int day = 0;
 
-        if(date.equals("")) // new Person - show date today
+        if(date == null) // new Person - show date today
         {
             Calendar cal= Calendar.getInstance();
             year=cal.get(Calendar.YEAR);
@@ -91,7 +91,10 @@ public class CreatePerson extends Fragment{
 
         editFirst.setText(firstname);
         editLast.setText(lastname);
-        editPhone.setText(phone+"");
+        if(phone==0)
+            editPhone.setText("");
+        else
+            editPhone.setText(phone+"");
         editMessage.setText(message);
 
 
@@ -144,6 +147,16 @@ public class CreatePerson extends Fragment{
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        //reads edit-area
+        phone = Integer.parseInt(editPhone.getText().toString());
+        firstname = editFirst.getText().toString();
+        lastname = editLast.getText().toString();
+        message = editMessage.getText().toString();
+        int year = datePicker.getYear();
+        int month = datePicker.getMonth() + 1;
+        int day = datePicker.getDayOfMonth();
+        date = year + "/" + month + "/" + day;
+        //saves
         outState.putInt("id",id);
         outState.putInt("phone",phone);
         outState.putString("firstname",firstname);

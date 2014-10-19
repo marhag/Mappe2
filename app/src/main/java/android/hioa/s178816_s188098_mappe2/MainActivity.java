@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.FragmentTransaction;
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends FragmentActivity {
@@ -38,7 +40,13 @@ public class MainActivity extends FragmentActivity {
            // getSupportFragmentManager().beginTransaction()
                    // .add(R.id.container, listFragment).commit();
         }
-
+        final Button createBtn = (Button)findViewById(R.id.regNew);
+        createBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeToCreate(new Person(),0);
+            }
+        });
 
     }
 
