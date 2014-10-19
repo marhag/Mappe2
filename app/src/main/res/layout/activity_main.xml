@@ -7,12 +7,12 @@
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="60dp">
 
         <Button
             android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:text="Legg til"
+            android:layout_height="55dp"
+            android:text="@string/add"
             android:id="@+id/regNew"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:text="Oversikt"
             android:textStyle="bold"
             android:id="@+id/headline"

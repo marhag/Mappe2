@@ -2,7 +2,7 @@ package android.hioa.s178816_s188098_mappe2;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
+import android.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
