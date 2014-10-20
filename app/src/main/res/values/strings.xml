@@ -21,5 +21,8 @@
         of your greatest most wonderful year ever :) \n Regards Me</string>
     <string name="sendtSms">SMS sent</string>
     <string name="sendtSmsTo">Your app just sent a birtday message to: </string>
+    <string name="setMessage">Birthday message</string>
+    <string name="yourMessage">Your message</string>
+    <string name="customize">Customize your birthday message</string>
 
 </resources>

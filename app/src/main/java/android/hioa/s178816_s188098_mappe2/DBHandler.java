@@ -8,13 +8,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DBHandler  extends SQLiteOpenHelper {
 	 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
  
     // Database Name
     private static final String DATABASE_NAME = "Personreg";
@@ -28,6 +29,7 @@ public class DBHandler  extends SQLiteOpenHelper {
     private static final String KEY_LASTNAME = "lastname";
     private static final String KEY_PH_NO = "telefon";
     private static final String KEY_BDATE = "date";
+    private static final String KEY_DAYMONTH = "daymonth";
     private static final String KEY_MESSAGE = "message";
  
     public DBHandler(Context context) {
@@ -40,7 +42,8 @@ public class DBHandler  extends SQLiteOpenHelper {
         String CREATE_PERSONS_TABLE = "CREATE TABLE " + TABLE_PERSONS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_FIRSTNAME + " TEXT,"
                 + KEY_LASTNAME + " TEXT,"+ KEY_PH_NO + " TEXT,"
-                + KEY_BDATE + " TEXT,"+ KEY_MESSAGE + " Text)";
+                + KEY_BDATE + " TEXT,"+ KEY_DAYMONTH + " TEXT,"
+                + KEY_MESSAGE + " Text)";
         db.execSQL(CREATE_PERSONS_TABLE);
     }
  
@@ -67,6 +70,7 @@ public class DBHandler  extends SQLiteOpenHelper {
         values.put(KEY_LASTNAME, person.getLastname()); // Person lastname
         values.put(KEY_PH_NO, person.getMobile()); // Person mobile
         values.put(KEY_BDATE, person.getBday()); // Person bday
+        values.put(KEY_DAYMONTH, person.getDayMonth()); // Person day and month
         values.put(KEY_MESSAGE, person.getCustomMessage()); // Person custom message
  
         // Inserting Row
@@ -79,7 +83,7 @@ public class DBHandler  extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
  
         Cursor cursor = db.query(TABLE_PERSONS, new String[] { KEY_ID,
-                KEY_FIRSTNAME,KEY_LASTNAME, KEY_PH_NO, KEY_BDATE, KEY_MESSAGE },
+                KEY_FIRSTNAME,KEY_LASTNAME, KEY_PH_NO, KEY_BDATE,KEY_DAYMONTH, KEY_MESSAGE },
                 KEY_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
@@ -87,7 +91,8 @@ public class DBHandler  extends SQLiteOpenHelper {
  
         Person person = new Person(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1),cursor.getString(2),Integer.parseInt(cursor.getString(3)),cursor.getString(4));
-        person.setCustomMessage(cursor.getString(5));
+        person.setDayMonth(cursor.getString(5));
+        person.setCustomMessage(cursor.getString(6));
         // return person
         return person;
     }
@@ -110,7 +115,8 @@ public class DBHandler  extends SQLiteOpenHelper {
                 person.setLastname(cursor.getString(2));
                 person.setMobile(Integer.parseInt(cursor.getString(3)));
                 person.setBday(cursor.getString(4));
-                person.setCustomMessage(cursor.getString(5));
+                person.setDayMonth(cursor.getString(5));
+                person.setCustomMessage(cursor.getString(6));
                 // Adding person to list
                 personList.add(person);
             } while (cursor.moveToNext());
@@ -129,6 +135,7 @@ public class DBHandler  extends SQLiteOpenHelper {
         values.put(KEY_LASTNAME, person.getLastname());
         values.put(KEY_PH_NO, person.getMobile());
         values.put(KEY_BDATE,person.getBday());
+        values.put(KEY_DAYMONTH,person.getDayMonth());
         values.put(KEY_MESSAGE,person.getCustomMessage());
  
         // updating row
@@ -154,6 +161,41 @@ public class DBHandler  extends SQLiteOpenHelper {
  
         // return count
         return cursor.getCount();
+    }
+    // Getting All Contacts
+    public List<Person> getAllPersonsWithBirthday() {
+        List<Person> personList = new ArrayList<Person>();
+
+        //gets today
+        Calendar cal= Calendar.getInstance();
+        String month=(cal.get(Calendar.MONTH) +1)+"";
+        String day=cal.get(Calendar.DAY_OF_MONTH) + "";
+        String daymonth = day+"/"+month;
+
+        String selectQuery = "SELECT  * FROM " + TABLE_PERSONS + " WHERE "
+                + KEY_DAYMONTH + " = '" +daymonth+"'" ;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Person person = new Person();
+                person.setId(Integer.parseInt(cursor.getString(0)));
+                person.setFirstname(cursor.getString(1));
+                person.setLastname(cursor.getString(2));
+                person.setMobile(Integer.parseInt(cursor.getString(3)));
+                person.setBday(cursor.getString(4));
+                person.setDayMonth(cursor.getString(5));
+                person.setCustomMessage(cursor.getString(6));
+                // Adding person to list
+                personList.add(person);
+            } while (cursor.moveToNext());
+        }
+
+        // return person list
+        return personList;
     }
  
 }
