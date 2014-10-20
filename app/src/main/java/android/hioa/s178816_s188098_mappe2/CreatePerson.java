@@ -104,6 +104,7 @@ public class CreatePerson extends Fragment{
             @Override
             public void onClick(View view) {
                 savePerson();
+                ((MainActivity)getActivity()).changeFragment(0,null);
             }
         });
 

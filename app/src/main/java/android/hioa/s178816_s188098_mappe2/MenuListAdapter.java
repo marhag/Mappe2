@@ -40,6 +40,12 @@ public class MenuListAdapter extends BaseAdapter {
     }
 
     @Override
+    public void notifyDataSetChanged() {
+        Log.d("Update", "DataSetChanged");
+        super.notifyDataSetChanged();
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
@@ -54,7 +60,7 @@ public class MenuListAdapter extends BaseAdapter {
         Person person = menuListPerson.get(position);
 
         txtName.setText(person.getFirstname()+" " + person.getLastname());
-        txtPhone.setText(person.getBday()+"");
+        txtPhone.setText(person.getMobile()+"");
 
         return convertView;
 

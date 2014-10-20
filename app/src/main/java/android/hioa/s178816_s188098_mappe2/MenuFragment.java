@@ -3,7 +3,10 @@ package android.hioa.s178816_s188098_mappe2;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.app.ListFragment;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.List;
@@ -12,6 +15,7 @@ public class MenuFragment extends ListFragment {
 
 	TypedArray menuIcons;
 
+    DBHandler db;
 	MenuListAdapter adapter;
 	private List<Person> menuListPersons;
 
@@ -21,23 +25,24 @@ public class MenuFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        DBHandler db = new DBHandler(getActivity());
+        db = new DBHandler(getActivity());
         if(savedInstanceState != null){
            //saved stuff
         }else{
             //else
         }
-        menuListPersons = db.getAllPersons();
-       // new CallOrders().execute();
 
-		adapter = new MenuListAdapter(getActivity(), menuListPersons);
-		setListAdapter(adapter);
-
-        //removes up btn in actionbar
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
+        updateList();
 	}
 
-	@Override
+    public void updateList(){
+        menuListPersons = db.getAllPersons();
+
+        adapter = new MenuListAdapter(getActivity(), menuListPersons);
+        setListAdapter(adapter);
+    }
+
+    @Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 
 		// Notify the parent activity of selected person
