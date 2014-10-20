@@ -31,7 +31,6 @@
         </activity>
 
         <service android:name=".SMSService" >
-            <uses-permission android:name="android.permission.SEND_SMS"/>
         </service>
         <service android:name=".PeriodicService" >
         </service>
@@ -42,8 +41,6 @@
             </intent-filter>
         </receiver>
 
-        <uses-permission android:name="android.permission.SEND_SMS" />
-        <uses-permission android:name="android.permission.END_SMS" />
 
     </application>
 

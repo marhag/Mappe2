@@ -3,6 +3,7 @@ package android.hioa.s178816_s188098_mappe2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.FragmentTransaction;
@@ -19,12 +20,13 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*DBHandler db = new DBHandler(this);
-        Person p = new Person("Mons","Monsen", 12341234,"26/11/1993");
+        DBHandler db = new DBHandler(this);
+       /* Person p = new Person("Mons","Monsen", 12341234,"26/11/1993");
         p.setCustomMessage("NÅ SKAL VI SE HER");
 
         db.addPerson(p);
-        db.addPerson(new Person("Per","Nilsen", 12341234,"01/10/2004"));*/
+        db.addPerson(new Person("Per","Nilsen", 12341234,"01/10/2004"));
+        db.addPerson(new Person("Nils","Pettersen", 12341234,"20/10/2004"));*/
 
         if(savedInstanceState!=null)
         {
@@ -46,6 +48,7 @@ public class MainActivity extends FragmentActivity {
                 changeToCreate(new Person(),0);
             }
         });
+
         //startService();
 
     }

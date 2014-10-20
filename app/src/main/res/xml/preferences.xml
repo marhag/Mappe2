@@ -10,9 +10,17 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:title="@string/setMessage">
+        <EditTextPreference
+            android:key="PREF_EDITTEXT"
+            android:title="@string/yourMessage"
+            android:summary="@string/customize"
+            android:dialogTitle="@string/setMessage" />
+    </PreferenceCategory>
+    <PreferenceCategory
         android:title="@string/languageHead">
         <ListPreference android:title="@string/language"
-            android:key="@string/languageHead"
+            android:key="language"
             android:entries="@array/language"
             android:entryValues="@array/langVal" />
     </PreferenceCategory>

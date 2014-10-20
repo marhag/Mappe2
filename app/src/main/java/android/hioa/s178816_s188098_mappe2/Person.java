@@ -9,6 +9,7 @@ public class Person {
     private String lastname;
     private int mobile;
     private String bday; // DD/MM/YYYY - can use Date
+    private String dayMonth;
     private String customMessage = "";
 
 
@@ -20,6 +21,8 @@ public class Person {
         lastname = lname;
         mobile = mob;
         bday  = day;
+        String[] dm = day.split("/");
+        dayMonth = dm[0] + "/" + dm[1];
     }
     public Person(int i,String fname, String lname, int mob, String day)
     {
@@ -28,6 +31,8 @@ public class Person {
         lastname = lname;
         mobile = mob;
         bday  = day;
+        String[] dm = day.split("/");
+        dayMonth = dm[0] + "/" + dm[1];
     }
 
     public int getId() {
@@ -68,6 +73,8 @@ public class Person {
 
     public void setBday(String bday) {
         this.bday = bday;
+        //String[] dm = bday.split("/");
+        //dayMonth = dm[0] + "/" + dm[1];
     }
 
     public String getCustomMessage() {
@@ -77,4 +84,13 @@ public class Person {
     public void setCustomMessage(String customMessage) {
         this.customMessage = customMessage;
     }
+
+    public String getDayMonth() {
+        return dayMonth;
+    }
+    public void setDayMonth(String dm)
+    {
+        dayMonth = dm;
+    }
+
 }

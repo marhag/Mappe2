@@ -14,7 +14,8 @@ import java.util.Calendar;
 public class SMSService extends Service {
     private static final String SMS_SENT_INTENT_FILTER = "android.hioa.s178816_s188098_mappe2.sms_send";
     private static final String SMS_DELIVERED_INTENT_FILTER = "android.hioa.s178816_s188098_mappe2.sms_delivered";
-//    private final String standardMessage = getApplication().getString(R.string.smsDefault);
+    private static String standardMessage = "";
+
 
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -27,35 +28,24 @@ public class SMSService extends Service {
 		NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		Intent i = new Intent(this,MainActivity.class);
 		PendingIntent pIntent = PendingIntent.getActivity(this, 0, i, 0);
-		
-		/*Intent dialogIntent = new Intent(getBaseContext(), Resultat.class);
-		dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		getApplication().startActivity(dialogIntent);*/
 
-        Calendar cal= Calendar.getInstance();
-        String month=cal.get(Calendar.MONTH) +"";
-        String day=cal.get(Calendar.DAY_OF_MONTH) + "";
+        standardMessage= getApplication().getString(R.string.smsDefault);
 
         DBHandler db = new DBHandler(getApplicationContext());
-        /*for(Person person : db.getAllPersons())
+        for(Person person : db.getAllPersonsWithBirthday())
         {
-            String[] personDay = person.getBday().split("/");
-            if(day==personDay[0] && month==personDay[1])
-            {
-                sendSms(person);
-                //start notification
-                Notification noti = new Notification.Builder(this)
-                        .setContentTitle("hei").//getApplication().getString(R.string.sendtSms)
-                        setContentText("hehe").//getApplication().getString(R.string.sendtSmsTo)
-                       // + person.getFirstname() +" "+ person.getLastname()
-                        setSmallIcon(R.drawable.ic_launcher).setContentIntent(pIntent).build();
-                noti.flags = Notification.FLAG_AUTO_CANCEL;
-                notificationManager.notify(0, noti);
-            }
-        }*/
-		sendSms(new Person("Guro", "Gaustad", 12345678,"12/12/1212"));
-        Toast.makeText(getApplicationContext(), "I MinService",
-				Toast.LENGTH_SHORT).show();
+            sendSms(person);
+            //start notification
+            Notification noti = new Notification.Builder(this)
+                    .setContentTitle(getApplication().getString(R.string.sendtSms)).//getApplication().getString(R.string.sendtSms)
+                    setContentText(getApplication().getString(R.string.sendtSmsTo)+ person.getFirstname() +" "+ person.getLastname()).//getApplication().getString(R.string.sendtSmsTo)+ person.getFirstname() +" "+ person.getLastname()
+                    setSmallIcon(R.drawable.ic_launcher).setContentIntent(pIntent).build();
+            noti.flags = Notification.FLAG_AUTO_CANCEL;
+            notificationManager.notify(0, noti);
+
+        }
+        /*Toast.makeText(getApplicationContext(), "I MinService",
+				Toast.LENGTH_SHORT).show();*/
 		return super.onStartCommand(intent, flags, startId);
 	}
 
@@ -63,7 +53,7 @@ public class SMSService extends Service {
     {
         String message = "";
         if(p.getCustomMessage().equals(""))
-            message = "kdjskjs";//standardMessage;
+            message = standardMessage;//standardMessage;
         else
             message = p.getCustomMessage();
 
