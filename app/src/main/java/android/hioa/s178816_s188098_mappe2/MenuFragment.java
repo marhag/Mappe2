@@ -15,6 +15,7 @@ public class MenuFragment extends ListFragment {
 
 	TypedArray menuIcons;
 
+    DBHandler db;
 	MenuListAdapter adapter;
 	private List<Person> menuListPersons;
 
@@ -24,21 +25,21 @@ public class MenuFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        DBHandler db = new DBHandler(getActivity());
+        db = new DBHandler(getActivity());
         if(savedInstanceState != null){
            //saved stuff
         }else{
             //else
         }
-        menuListPersons = db.getAllPersons();
 
-        adapter = new MenuListAdapter(getActivity(), menuListPersons);
-		setListAdapter(adapter);
-
+        updateList();
 	}
 
     public void updateList(){
-        adapter.notifyDataSetChanged();
+        menuListPersons = db.getAllPersons();
+
+        adapter = new MenuListAdapter(getActivity(), menuListPersons);
+        setListAdapter(adapter);
     }
 
     @Override
