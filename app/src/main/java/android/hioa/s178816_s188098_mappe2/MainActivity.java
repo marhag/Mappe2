@@ -48,6 +48,7 @@ public class MainActivity extends FragmentActivity {
                 changeToCreate(new Person(),0);
             }
         });
+        startService();
 
     }
 
@@ -123,5 +124,11 @@ public class MainActivity extends FragmentActivity {
         Intent settings = new Intent(this, Settings.class);
         startActivity(settings);
 
+    }
+
+    public void startService() {
+        Intent intent = new Intent();
+        intent.setAction ("android.hioa.s178816_s188098_mappe2.mybroadcastreceiver");
+        sendBroadcast(intent);
     }
 }

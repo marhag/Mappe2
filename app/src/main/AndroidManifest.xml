@@ -7,6 +7,12 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+        <uses-permission android:name="android.permission.SEND_SMS"/>
+        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+        <uses-permission android:name="android.permission.SEND_SMS" />
+        <uses-permission android:name="android.permission.END_SMS" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -23,8 +29,25 @@
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myfirstapp.MainActivity" />
+                android:value="android.hioa.s178816_s188098_mappe2.MainActivity" />
         </activity>
+
+        <service android:name=".SMSService" >
+            <uses-permission android:name="android.permission.SEND_SMS" />
+            <uses-permission android:name="android.permission.END_SMS" />
+        </service>
+        <service android:name=".PeriodicService" >
+        </service>
+
+        <receiver android:name=".MyBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="android.hioa.s178816_s188098_mappe2.mybroadcastreceiver" />
+            </intent-filter>
+        </receiver>
+
+        <uses-permission android:name="android.permission.SEND_SMS" />
+        <uses-permission android:name="android.permission.END_SMS" />
+
     </application>
 
 </manifest>

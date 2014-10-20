@@ -17,5 +17,9 @@
     <string name="service">Service on/off</string>
     <string name="languageHead">Language</string>
     <string name="serviceOnOff">Send birthday message</string>
+    <string name="smsDefault">Happy birthday! I hope this is the beginning
+        of your greatest most wonderful year ever :) \n Regards Me</string>
+    <string name="sendtSms">SMS sent</string>
+    <string name="sendtSmsTo">Your app just sent a birtday message to: </string>
 
 </resources>
