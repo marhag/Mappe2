@@ -21,12 +21,14 @@ public class CreatePerson extends Fragment{
 
     private EditText editFirst,editLast,editPhone,editMessage;
     private DatePicker datePicker;
-
-
+    private DBHandler db;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        db = new DBHandler(getActivity());
+
         if (savedInstanceState != null) {
             id = savedInstanceState.getInt("id");
             phone = savedInstanceState.getInt("phone");
@@ -97,6 +99,10 @@ public class CreatePerson extends Fragment{
             editPhone.setText(phone+"");
         editMessage.setText(message);
 
+        if(type == "EDIT")
+            getActivity().findViewById(R.id.deletePersonBtn).setVisibility(View.VISIBLE);
+        else
+            getActivity().findViewById(R.id.deletePersonBtn).setVisibility(View.GONE);
 
 
         final Button regBtn = (Button)getActivity().findViewById(R.id.addPersonBtn);
@@ -108,8 +114,22 @@ public class CreatePerson extends Fragment{
             }
         });
 
+        final Button delBtn = (Button)getActivity().findViewById(R.id.deletePersonBtn);
+        delBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                deletePerson();
+                ((MainActivity)getActivity()).changeFragment(0,null);
+            }
+        });
 
     }
+
+    public void deletePerson() {
+        Person person = db.getPerson(id);
+        db.deletePerson(person);
+    }
+
     public void savePerson()
     {
         Person person = new Person();
@@ -125,7 +145,6 @@ public class CreatePerson extends Fragment{
         int day = datePicker.getDayOfMonth();
         person.setBday(day+ "/" + month + "/" + year);
 
-        DBHandler db = new DBHandler(getActivity());
         if(type.equals("CREATE"))
             db.addPerson(person);
         else

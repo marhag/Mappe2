@@ -57,7 +57,6 @@ public class MenuListAdapter extends BaseAdapter {
         txtPhone.setText(person.getMobile()+"");
 
         return convertView;
-
     }
 
 }

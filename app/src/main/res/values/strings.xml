@@ -6,6 +6,9 @@
     <string name="action_settings">Settings</string>
     <string name="imgdesc">Desc</string>
     <string name="add">Legg til</string>
+    <string name="save">Lagre</string>
+    <string name="delete">Slett</string>
+
     <string name="firstname">Fist name:</string>
     <string name="lastname">Last name:</string>
     <string name="date">Date:</string>
