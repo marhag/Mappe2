@@ -87,9 +87,9 @@ public class MainActivity extends FragmentActivity {
                 changeToCreate(p,1);
                 return;
             default:
-                getSupportFragmentManager().popBackStackImmediate();;
-                //fm.popBackStack();
-
+                getActionBar().setDisplayHomeAsUpEnabled(false);
+                listFragment.updateList();
+                getFragmentManager().popBackStack();
                 return;
         }
 
@@ -123,5 +123,13 @@ public class MainActivity extends FragmentActivity {
         Intent settings = new Intent(this, Settings.class);
         startActivity(settings);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(getFragmentManager().getBackStackEntryCount() > 0)
+            changeFragment(0,null);
+        else
+            super.onBackPressed();
     }
 }
