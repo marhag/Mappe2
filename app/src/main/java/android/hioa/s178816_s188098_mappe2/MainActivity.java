@@ -46,7 +46,7 @@ public class MainActivity extends FragmentActivity {
                 changeToCreate(new Person(),0);
             }
         });
-        startService();
+        //startService();
 
     }
 
