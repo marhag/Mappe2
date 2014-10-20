@@ -134,9 +134,10 @@ public class MainActivity extends FragmentActivity {
             super.onBackPressed();
     }
 
-    public void startService() {
+    //service starts at boot, only used for testing
+    /*public void startService() {
         Intent intent = new Intent();
         intent.setAction ("android.hioa.s178816_s188098_mappe2.mybroadcastreceiver");
         sendBroadcast(intent);
-    }
+    }*/
 }
