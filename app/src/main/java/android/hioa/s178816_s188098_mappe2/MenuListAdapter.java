@@ -40,12 +40,6 @@ public class MenuListAdapter extends BaseAdapter {
     }
 
     @Override
-    public void notifyDataSetChanged() {
-        Log.d("Update", "DataSetChanged");
-        super.notifyDataSetChanged();
-    }
-
-    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {

@@ -3,8 +3,6 @@ package android.hioa.s178816_s188098_mappe2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.FragmentTransaction;
@@ -88,9 +86,9 @@ public class MainActivity extends FragmentActivity {
                 changeToCreate(p,1);
                 return;
             default:
-                getSupportFragmentManager().popBackStackImmediate();;
-                //fm.popBackStack();
-
+                getActionBar().setDisplayHomeAsUpEnabled(false);
+                getFragmentManager().popBackStack();
+                listFragment.updateList();
                 return;
         }
 
@@ -123,7 +121,14 @@ public class MainActivity extends FragmentActivity {
     {
         Intent settings = new Intent(this, Settings.class);
         startActivity(settings);
+    }
 
+    @Override
+    public void onBackPressed() {
+        if(getFragmentManager().getBackStackEntryCount() > 0)
+            changeFragment(0,null);
+        else
+            super.onBackPressed();
     }
 
     public void startService() {

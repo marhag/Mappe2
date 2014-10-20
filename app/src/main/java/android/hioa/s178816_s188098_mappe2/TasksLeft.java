@@ -18,8 +18,6 @@ public class TasksLeft {
     - fix onBackPressed ( just quits app now)
      */
 
-
-
     /*
     Intent smsIntent = new Intent(Intent.ACTION_VIEW);
     smsIntent.putExtra("sms_body", "Hello World!");
