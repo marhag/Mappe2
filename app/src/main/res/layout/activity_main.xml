@@ -12,6 +12,8 @@
         <Button
             android:layout_width="70dp"
             android:layout_height="55dp"
+            android:layout_margin="5dp"
+            android:textColor="@android:color/white"
             android:text="@string/add"
             android:id="@+id/regNew"
             android:background="@drawable/button_styled"
@@ -26,6 +28,7 @@
             android:text="@string/overview"
             android:textStyle="bold"
             android:id="@+id/headline"
+            android:textColor="@android:color/black"
             android:textAlignment="center"
             android:gravity="center"
             android:layout_alignParentStart="true"
