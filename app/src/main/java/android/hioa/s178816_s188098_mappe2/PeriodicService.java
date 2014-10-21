@@ -24,10 +24,10 @@ public class PeriodicService extends Service {
         timeStart.set(Calendar.SECOND, 0);
         //set repeat time to 14.30.00 each day - get from date-class
 
-        //alarm.set(AlarmManager.RTC_WAKEUP, timeStart.getTimeInMillis(), pintent);
+        alarm.set(AlarmManager.RTC_WAKEUP, timeStart.getTimeInMillis(), pintent);
         //for testing
-		alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-				1000*60, pintent);
+		/*alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+				1000*60, pintent);*/
         Log.d("PeriodicService","true");
 		return super.onStartCommand(intent, flags, startId);
 	}
