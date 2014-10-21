@@ -35,9 +35,9 @@
         <service android:name=".PeriodicService" >
         </service>
 
-        <receiver android:name=".MyBroadcastReceiver" android:enabled="true" android:exported="false">
+        <receiver android:name=".MyBroadcastReceiver">
             <intent-filter>
-               <!-- <action android:name="android.intent.action.BOOT_COMPLETED" />-->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.hioa.s178816_s188098_mappe2.mybroadcastreceiver" />
             </intent-filter>
         </receiver>

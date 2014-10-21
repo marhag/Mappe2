@@ -171,6 +171,7 @@ public class DBHandler  extends SQLiteOpenHelper {
         String month=(cal.get(Calendar.MONTH) +1)+"";
         String day=cal.get(Calendar.DAY_OF_MONTH) + "";
         String daymonth = day+"/"+month;
+        Log.d("dagens dato",daymonth);
 
         String selectQuery = "SELECT  * FROM " + TABLE_PERSONS + " WHERE "
                 + KEY_DAYMONTH + " = '" +daymonth+"'" ;

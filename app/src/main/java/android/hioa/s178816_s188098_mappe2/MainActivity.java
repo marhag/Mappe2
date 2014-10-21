@@ -22,12 +22,14 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
         DBHandler db = new DBHandler(this);
-       /* Person p = new Person("Mons","Monsen", 12341234,"26/11/1993");
+        /*Person p = new Person("Mons","Monsen", 12341234,"26/11/1993");
         p.setCustomMessage("NÅ SKAL VI SE HER");
 
         db.addPerson(p);
         db.addPerson(new Person("Per","Nilsen", 12341234,"01/10/2004"));
         db.addPerson(new Person("Nils","Pettersen", 12341234,"20/10/2004"));*/
+        for(Person p : db.getAllPersons())
+            Log.d("Denne finnes",p.getFirstname() + " " + p.getDayMonth());
 
         if(savedInstanceState!=null)
         {
