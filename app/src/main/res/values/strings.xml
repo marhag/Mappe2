@@ -8,6 +8,11 @@
     <string name="add">Legg til</string>
     <string name="save">Lagre</string>
     <string name="delete">Slett</string>
+    <string name="overview">Oversikt</string>
+    <string name="addContact">Registrer kontakt</string>
+    <string name="quit">Avslutt</string>
+
+
 
     <string name="firstname">Fist name:</string>
     <string name="lastname">Last name:</string>

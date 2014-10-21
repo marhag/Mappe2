@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.regex.Pattern;
 
 /**
  * Created by marhag on 18.10.14.
@@ -28,6 +31,9 @@ public class CreatePerson extends Fragment{
                              Bundle savedInstanceState) {
 
         db = new DBHandler(getActivity());
+        TextView headline = (TextView)getActivity().findViewById(R.id.headline);
+        headline.setText(getString(R.string.addContact));
+        getActivity().findViewById(R.id.regNew).setVisibility(View.INVISIBLE);
 
         if (savedInstanceState != null) {
             id = savedInstanceState.getInt("id");
@@ -109,8 +115,10 @@ public class CreatePerson extends Fragment{
         regBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                savePerson();
-                ((MainActivity)getActivity()).changeFragment(0,null);
+                if(validateInput()) {
+                    savePerson();
+                    ((MainActivity) getActivity()).changeFragment(0, null);
+                }
             }
         });
 
@@ -149,6 +157,28 @@ public class CreatePerson extends Fragment{
             db.addPerson(person);
         else
             db.updatePerson(person);
+    }
+
+    public boolean validateInput(){
+        boolean valid = true;
+        String error = "";
+
+        if(!editFirst.getText().toString().matches("[A-Åa-å \\-]{1,30}"))
+            error = "Feil i fornavn";
+        else if(!editLast.getText().toString().matches("[A-Åa-å \\-]{1,30}"))
+            error = "Feil i etternavn";
+        else if(!editPhone.getText().toString().matches("\\d{8}"))
+            error = "Feil i telefonnummer";
+
+        if(error != "")
+            valid = false;
+
+        if(!valid){
+            Toast toast = Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        return valid;
     }
 
     @Override

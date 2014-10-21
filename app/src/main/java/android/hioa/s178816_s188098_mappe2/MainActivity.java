@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class MainActivity extends FragmentActivity {
@@ -75,6 +76,9 @@ public class MainActivity extends FragmentActivity {
             case R.id.action_settings:
                 goToSettings();
                 return true;
+            case R.id.action_quit:
+                finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -82,14 +86,16 @@ public class MainActivity extends FragmentActivity {
     //can be used for changing fragments
     public void changeFragment(int i, Person p)
     {
+        TextView headline = (TextView)findViewById(R.id.headline);
 
         switch (i) {
-
             case 1:
                 changeToCreate(p,1);
                 return;
             default:
                 getActionBar().setDisplayHomeAsUpEnabled(false);
+                headline.setText(getString(R.string.overview));
+                findViewById(R.id.regNew).setVisibility(View.VISIBLE);
                 getFragmentManager().popBackStack();
                 listFragment.updateList();
                 return;
