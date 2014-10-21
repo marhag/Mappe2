@@ -39,15 +39,13 @@ public class SMSService extends Service {
             sendSms(person);
             //start notification
             Notification noti = new Notification.Builder(this)
-                    .setContentTitle(getApplication().getString(R.string.sendtSms)).//getApplication().getString(R.string.sendtSms)
-                    setContentText(getApplication().getString(R.string.sendtSmsTo)+ person.getFirstname() +" "+ person.getLastname()).//getApplication().getString(R.string.sendtSmsTo)+ person.getFirstname() +" "+ person.getLastname()
+                    .setContentTitle(getApplication().getString(R.string.sendtSms)).
+                    setContentText(getApplication().getString(R.string.sendtSmsTo)).
                     setSmallIcon(R.drawable.ic_launcher).setContentIntent(pIntent).build();
             noti.flags = Notification.FLAG_AUTO_CANCEL;
             notificationManager.notify(0, noti);
 
         }
-        /*Toast.makeText(getApplicationContext(), "I MinService",
-				Toast.LENGTH_SHORT).show();*/
 		return super.onStartCommand(intent, flags, startId);
 	}
 

@@ -110,6 +110,7 @@
             android:layout_weight="1"
             android:layout_height="50dp"
             android:text="@string/save"
+            android:background="@drawable/button_styled"
             android:id="@+id/addPersonBtn"/>
 
         <Button
@@ -117,6 +118,7 @@
             android:layout_weight="1"
             android:layout_height="50dp"
             android:text="@string/delete"
+            android:background="@drawable/button_styled"
             android:id="@+id/deletePersonBtn"/>
 
         </LinearLayout>
