@@ -35,4 +35,9 @@
     <string name="yourMessage">Din melding</string>
     <string name="customize">Skreddersy din bursdagsmelding</string>
 
+    <string name="setTime">Service tid</string>
+    <string name="timeTitle">Sett tid for sms-service</string>
+    <string name="set">Ok</string>
+    <string name="cancel">Avbryt</string>
+
 </resources>
