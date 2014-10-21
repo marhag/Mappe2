@@ -16,6 +16,7 @@ public class MainActivity extends FragmentActivity {
 
     private MenuFragment listFragment;
     private CreatePerson cp;
+    private SavedVariables sv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class MainActivity extends FragmentActivity {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.add(R.id.container,listFragment);
             transaction.commit();
+            sv = new SavedVariables(this);
            // getSupportFragmentManager().beginTransaction()
                    // .add(R.id.container, listFragment).commit();
         }
@@ -52,7 +54,6 @@ public class MainActivity extends FragmentActivity {
             }
         });
 
-        //startService();
 
     }
 
@@ -131,7 +132,7 @@ public class MainActivity extends FragmentActivity {
     public void goToSettings()
     {
         Intent settings = new Intent(this, Settings.class);
-        startActivity(settings);
+        startActivityForResult(settings, 101);
     }
 
     @Override
@@ -142,10 +143,40 @@ public class MainActivity extends FragmentActivity {
             super.onBackPressed();
     }
 
+    public SavedVariables getSv() {
+        return sv;
+    }
+
+    public void saveSv() {
+        sv.saveState();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        saveSv();
+    }
+
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+        saveSv();
+    }
+
     //service starts at boot, only used for testing
     /*public void startService() {
         Intent intent = new Intent();
         intent.setAction ("android.hioa.s178816_s188098_mappe2.mybroadcastreceiver");
         sendBroadcast(intent);
     }*/
+
+    //Avslutter appen fra Settings
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 101) {
+            if(resultCode == RESULT_OK)
+                finish();
+        }
+    }
 }

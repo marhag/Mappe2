@@ -11,6 +11,8 @@
     <string name="overview">Oversikt</string>
     <string name="addContact">Registrer kontakt</string>
     <string name="quit">Avslutt</string>
+    <string name="set">Ok</string>
+    <string name="cancel">Cancel</string>
 
 
 
@@ -32,5 +34,7 @@
     <string name="setMessage">Birthday message</string>
     <string name="yourMessage">Your message</string>
     <string name="customize">Customize your birthday message</string>
+    <string name="setTime">Service time</string>
+    <string name="timeTitle">Set time for sms-service</string>
 
 </resources>

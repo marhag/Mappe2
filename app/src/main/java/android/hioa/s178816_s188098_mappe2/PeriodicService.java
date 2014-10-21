@@ -13,14 +13,16 @@ import android.util.Log;
 public class PeriodicService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		Calendar cal = Calendar.getInstance();
 		Intent i = new Intent(this, SMSService.class);
 		PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
 		AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
+        SavedVariables sv = new SavedVariables(getApplication());
+        int hour = sv.getHour();
+        int min = sv.getMin();
         Calendar timeStart = Calendar.getInstance();
-        timeStart.set(Calendar.HOUR_OF_DAY, 14);
-        timeStart.set(Calendar.MINUTE, 30);
+        timeStart.set(Calendar.HOUR_OF_DAY, hour);
+        timeStart.set(Calendar.MINUTE, min);
         timeStart.set(Calendar.SECOND, 0);
         //set repeat time to 14.30.00 each day - get from date-class
 

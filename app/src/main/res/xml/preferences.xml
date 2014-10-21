@@ -19,6 +19,12 @@
             android:dialogTitle="@string/setMessage" />
     </PreferenceCategory>
     <PreferenceCategory
+        android:title="@string/setTime">
+        <android.hioa.s178816_s188098_mappe2.TimePreference
+            android:key="TIMEPREF"
+            android:title="@string/timeTitle"/>
+    </PreferenceCategory>
+    <PreferenceCategory
         android:title="@string/languageHead">
         <ListPreference android:title="@string/language"
             android:key="language"

@@ -42,7 +42,7 @@ public class PrefsFragment extends PreferenceFragment{
                     sv.setService(false);
                     stopService();
                 }
-
+                sv.saveState();
                 return true;
             }
         });
@@ -56,10 +56,25 @@ public class PrefsFragment extends PreferenceFragment{
 
                 String newHostValue = newValue.toString();
                 Log.i("Service ", newHostValue);
-
+                sv.saveState();
                 return true;
             }
         });
+
+        final TimePreference timePreference = (TimePreference)findPreference("TIMEPREF");
+        timePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object o) {
+                TimePreference tp = (TimePreference)preference;
+                int[] time = tp.getCalendar();
+                sv.setHour(time[0]);
+                sv.setMin(time[1]);
+                sv.saveState();
+                return true;
+            }
+        });
+
+
         //0 = Norwegian
         //1 = English
         ListPreference languagelist = (ListPreference) findPreference("language");
@@ -70,6 +85,7 @@ public class PrefsFragment extends PreferenceFragment{
                 // TODO Auto-generated method stub
                 sv.setLanguageValue(Integer.parseInt(newValue.toString()));
                 Log.d("Service selected",newValue.toString());
+                sv.saveState();
                 return true;
 
 
