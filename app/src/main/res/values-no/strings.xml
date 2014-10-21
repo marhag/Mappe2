@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Personregister</string>
+    <string name="action_settings">Innstillinger</string>
+    <string name="quit">Avslutt</string>
+    <string name="imgdesc">Desc</string>
+
+    <string name="add">Legg til</string>
+    <string name="save">Lagre</string>
+    <string name="delete">Slett</string>
+    <string name="overview">Oversikt</string>
+    <string name="addContact">Registrer kontakt</string>
+
+
+
+    <string name="firstname">Fornavn:</string>
+    <string name="lastname">Etternavn:</string>
+    <string name="phone">Telefon:</string>
+    <string name="custom">Melding:</string>
+    <string name="date">Født:</string>
+
+    <string name="title_activity_settings">Instillinger</string>
+    <string name="language">Velg språk</string>
+    <string name="sms">SMS-service</string>
+    <string name="service">Service på/av</string>
+    <string name="languageHead">Språk</string>
+    <string name="serviceOnOff">Send bursdagsmelding</string>
+    <string name="smsDefault">Gratulerer med dagen!
+        Jeg håper dette er starten på ditt beste og mest vidunderlige år noen gang! :) \nVenlig hilsen Meg</string>
+    <string name="sendtSms">SMS sendt</string>
+    <string name="sendtSmsTo">Appen din sendte akkurat en bursdagsmelding!</string>
+
+    <string name="setMessage">Bursdagsmelding</string>
+    <string name="yourMessage">Din melding</string>
+    <string name="customize">Skreddersy din bursdagsmelding</string>
+
+</resources>

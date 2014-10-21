@@ -2,96 +2,101 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
+
     <RelativeLayout
         android:id="@+id/inputs"
-        android:layout_centerHorizontal="true"
         android:layout_width="300dp"
-        android:layout_marginTop="5dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp">
 
         <LinearLayout
             android:id="@+id/text"
-            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/firstname"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <EditText
-                    android:layout_marginLeft="5dp"
+                    android:id="@+id/editFirstname"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:id="@+id/editFirstname"
-                    android:textSize="20sp"/>
-                </RelativeLayout>
+                    android:layout_marginLeft="5dp"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/lastname"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <EditText
-                    android:layout_marginLeft="5dp"
-                    android:layout_width="200dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_height="wrap_content"
                     android:id="@+id/editLastname"
-                    android:textSize="20sp"/>
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="20sp" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/phone"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <EditText
-                    android:layout_marginLeft="5dp"
+                    android:id="@+id/editPhone"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:id="@+id/editPhone"
-                    android:textSize="20sp"/>
+                    android:layout_marginLeft="5dp"
+                    android:textSize="20sp" />
             </RelativeLayout>
+
             <TextView
-                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/custom"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/editMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editMessage"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
+
             <TextView
-                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:text="@string/date"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </LinearLayout>
 
 
@@ -101,40 +106,43 @@
         android:id="@+id/createBtnLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:orientation="horizontal">
 
         <Button
+            android:id="@+id/addPersonBtn"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_styled"
             android:text="@string/save"
-            android:background="@drawable/button_styled"
-            android:id="@+id/addPersonBtn"/>
+            android:textColor="@android:color/white" />
 
         <Button
+            android:id="@+id/deletePersonBtn"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="50dp"
-            android:text="@string/delete"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
             android:background="@drawable/button_styled"
-            android:id="@+id/deletePersonBtn"/>
+            android:text="@string/delete"
+            android:textColor="@android:color/white" />
 
-        </LinearLayout>
+    </LinearLayout>
 
 
     <DatePicker
+        android:id="@+id/datePicker"
         android:layout_width="230dp"
         android:layout_height="150dp"
-        android:scaleX="0.8"
-        android:scaleY="0.8"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/datePicker"
         android:layout_above="@+id/createBtnLayout"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="0dp"
-        android:calendarViewShown="false"/>
-
+        android:calendarViewShown="false"
+        android:scaleX="0.8"
+        android:scaleY="0.8" />
 
 
 </RelativeLayout>

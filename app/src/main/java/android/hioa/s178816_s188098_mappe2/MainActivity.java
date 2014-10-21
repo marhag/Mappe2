@@ -131,7 +131,7 @@ public class MainActivity extends FragmentActivity {
     public void goToSettings()
     {
         Intent settings = new Intent(this, Settings.class);
-        startActivity(settings);
+        startActivityForResult(settings, 101);
     }
 
     @Override
@@ -148,4 +148,14 @@ public class MainActivity extends FragmentActivity {
         intent.setAction ("android.hioa.s178816_s188098_mappe2.mybroadcastreceiver");
         sendBroadcast(intent);
     }*/
+
+    //Avslutter appen fra Settings
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 101) {
+            if(resultCode == RESULT_OK)
+                finish();
+        }
+    }
 }
