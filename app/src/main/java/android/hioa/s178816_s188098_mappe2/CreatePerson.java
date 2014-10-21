@@ -124,6 +124,7 @@ public class CreatePerson extends Fragment{
         int month = datePicker.getMonth() + 1;
         int day = datePicker.getDayOfMonth();
         person.setBday(day+ "/" + month + "/" + year);
+        person.setDayMonth(day+ "/" + month);
 
         DBHandler db = new DBHandler(getActivity());
         if(type.equals("CREATE"))

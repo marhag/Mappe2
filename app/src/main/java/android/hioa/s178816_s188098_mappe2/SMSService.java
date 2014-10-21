@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 import android.telephony.SmsManager;
 
@@ -30,10 +31,11 @@ public class SMSService extends Service {
 		PendingIntent pIntent = PendingIntent.getActivity(this, 0, i, 0);
 
         standardMessage= getApplication().getString(R.string.smsDefault);
-
+        Log.d("Service","true");
         DBHandler db = new DBHandler(getApplicationContext());
         for(Person person : db.getAllPersonsWithBirthday())
         {
+            Log.d("Service","personen er: " + person.getFirstname());
             sendSms(person);
             //start notification
             Notification noti = new Notification.Builder(this)

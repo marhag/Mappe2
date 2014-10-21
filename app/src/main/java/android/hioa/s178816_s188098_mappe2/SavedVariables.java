@@ -10,6 +10,8 @@ public class SavedVariables {
     private Context c;
     private final String FILENAME = "variables_file";
     private int languageValue;
+    private String chosenLangNor,chosenLangEng;
+    private boolean service;
 
     public SavedVariables(Context c)
     {
@@ -21,6 +23,11 @@ public class SavedVariables {
         SharedPreferences.Editor editor = settings.edit();
 
         editor.putInt("languageValue", languageValue);
+
+        editor.putString("chosenLangNor",chosenLangNor);
+        editor.putString("chosenLangEng",chosenLangEng);
+
+        editor.putBoolean("service",service);
 
         // Commit the edits!
         editor.commit();
@@ -35,6 +42,10 @@ public class SavedVariables {
 
         languageValue = settings.getInt("languageValue",1);
 
+        chosenLangNor = settings.getString("chosenLangNor","");
+        chosenLangEng = settings.getString("chosenLangEng","");
+
+        service = settings.getBoolean("service",true);
 
     }
 
@@ -44,5 +55,29 @@ public class SavedVariables {
 
     public void setLanguageValue(int languageValue) {
         this.languageValue = languageValue;
+    }
+
+    public String getChosenLangNor() {
+        return chosenLangNor;
+    }
+
+    public void setChosenLangNor(String chosenLangNor) {
+        this.chosenLangNor = chosenLangNor;
+    }
+
+    public String getChosenLangEng() {
+        return chosenLangEng;
+    }
+
+    public void setChosenLangEng(String chosenLangEng) {
+        this.chosenLangEng = chosenLangEng;
+    }
+
+    public boolean getService() {
+        return service;
+    }
+
+    public void setService(boolean service) {
+        this.service = service;
     }
 }
