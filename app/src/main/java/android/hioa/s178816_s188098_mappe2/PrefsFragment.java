@@ -21,8 +21,6 @@ import java.util.Locale;
  */
 public class PrefsFragment extends PreferenceFragment{
 
-    final CheckBoxPreference cbSms = (CheckBoxPreference) findPreference("checkbox_preference_sms");
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +29,7 @@ public class PrefsFragment extends PreferenceFragment{
         final SavedVariables sv = new SavedVariables(getActivity());
 
         final CheckBoxPreference pref = (CheckBoxPreference) findPreference("checkbox_preference_sms");
+        //Log.d("service er",sv.getService() + "");
         pref.setChecked(sv.getService()); // check whats saved
         pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
@@ -51,14 +50,20 @@ public class PrefsFragment extends PreferenceFragment{
         });
 
         final EditTextPreference editTextPreference =  (EditTextPreference)findPreference("PREF_EDITTEXT_MESSAGE");
-        editTextPreference.setText("Saved");// check whats saved
+        String text = (sv.getLanguageValue()==0)?sv.getChosenLangNor():sv.getChosenLangEng();
+        if(text=="")
+            text = getActivity().getString(R.string.smsDefault);
+        editTextPreference.setText(text);// check whats saved
         editTextPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 EditTextPreference etp = (EditTextPreference) preference;
-
-                String newHostValue = newValue.toString();
-                Log.i("Service ", newHostValue);
+                if(sv.getLanguageValue()==0)
+                {
+                    sv.setChosenLangNor(newValue.toString());
+                }
+                else
+                    sv.setChosenLangEng(newValue.toString());
                 sv.saveState();
                 return true;
             }
