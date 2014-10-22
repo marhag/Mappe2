@@ -89,7 +89,7 @@ public class PrefsFragment extends PreferenceFragment{
 
 
         ListPreference languagelist = (ListPreference) findPreference("language");
-        languagelist.setValueIndex(sv.getLanguageValue());// check whats saved
+        languagelist.setValueIndex(sv.getLanguageValue());// check for active language
         languagelist.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -117,10 +117,8 @@ public class PrefsFragment extends PreferenceFragment{
         config.locale = newLoc;
         getResources().updateConfiguration(config,null);
 
-        sv.setLanguageValue(langCode);
+        sv.setLanguageValue(langCode);//delete
         Log.d("Service selected", langCode + "");
-        //sv.saveState();
-
 
         Intent intent = new Intent(getActivity(), Settings.class);
         startActivity(intent);

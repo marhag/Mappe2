@@ -198,5 +198,9 @@ public class MainActivity extends FragmentActivity {
         Configuration config = new Configuration();
         config.locale = newLoc;
         getResources().updateConfiguration(config,null);
+
+        Intent main = new Intent(this,MainActivity.class);
+        startActivity(main);
+        finish();
     }
 }
