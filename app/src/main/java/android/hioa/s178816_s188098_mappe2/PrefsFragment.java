@@ -79,8 +79,10 @@ public class PrefsFragment extends PreferenceFragment{
                 sv.setMin(time[1]);
                 sv.saveState();
                 //resets the alarmManager with the new time
-                stopService();
-                startService();
+                if(sv.getService()) {
+                    stopService();
+                    startService();
+                }
                 return true;
             }
         });
