@@ -27,8 +27,8 @@ public class SMSService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-		Intent i = new Intent(this,MainActivity.class);
-		PendingIntent pIntent = PendingIntent.getActivity(this, 0, i, 0);
+		//Intent i = new Intent(this,MainActivity.class);
+		//PendingIntent pIntent = PendingIntent.getActivity(this, 0, i, 0);
 
         standardMessage= getApplication().getString(R.string.smsDefault);
         Log.d("Service","true");
@@ -41,7 +41,7 @@ public class SMSService extends Service {
             Notification noti = new Notification.Builder(this)
                     .setContentTitle(getApplication().getString(R.string.sendtSms)).
                     setContentText(getApplication().getString(R.string.sendtSmsTo)).
-                    setSmallIcon(R.drawable.ic_launcher).setContentIntent(pIntent).build();
+                    setSmallIcon(R.drawable.ic_launcher).build();//.setContentIntent(pIntent)
             noti.flags = Notification.FLAG_AUTO_CANCEL;
             notificationManager.notify(0, noti);
 

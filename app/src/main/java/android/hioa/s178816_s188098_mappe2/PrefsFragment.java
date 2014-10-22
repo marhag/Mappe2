@@ -94,7 +94,7 @@ public class PrefsFragment extends PreferenceFragment{
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 // TODO Auto-generated method stub
-                setLanguage(Integer.parseInt(newValue.toString()), sv);
+                setLanguage(Integer.parseInt(newValue.toString()));
 
                 return true;
             }

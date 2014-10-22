@@ -186,7 +186,9 @@ public class CreatePerson extends Fragment{
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         //reads edit-area
-        phone = Integer.parseInt(editPhone.getText().toString());
+        String pho = editPhone.getText().toString();
+        int nr = (pho.equals(""))?0:Integer.parseInt(pho);
+        phone = nr;
         firstname = editFirst.getText().toString();
         lastname = editLast.getText().toString();
         message = editMessage.getText().toString();

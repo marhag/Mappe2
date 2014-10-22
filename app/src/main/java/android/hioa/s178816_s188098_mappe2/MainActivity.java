@@ -33,24 +33,22 @@ public class MainActivity extends FragmentActivity {
 
         db.addPerson(p);
         db.addPerson(new Person("Per","Nilsen", 12341234,"01/10/2004"));
-        db.addPerson(new Person("Nils","Pettersen", 12341234,"20/10/2004"));*/
+        db.addPerson(new Person("Nils","Pettersen", 12341234,"20/10/2004"));
         for(Person p : db.getAllPersons())
-            Log.d("Denne finnes",p.getFirstname() + " " + p.getDayMonth());
-
+            Log.d("Denne finnes",p.getFirstname() + " " + p.getDayMonth());*/
+        listFragment = new MenuFragment();
         if(savedInstanceState!=null)
         {
-
         }
         else
         {
-            listFragment = new MenuFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.add(R.id.container, listFragment);
+            transaction.add(R.id.container, listFragment,"liste");
             transaction.commit();
-
-            sv = new SavedVariables(this);
+            //sv = new SavedVariables(this);
         }
 
+        sv = new SavedVariables(this);
         final Button createBtn = (Button)findViewById(R.id.regNew);
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +106,12 @@ public class MainActivity extends FragmentActivity {
         }
 
     }
-
+    public void changeToMenu()
+    {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, listFragment);
+        transaction.commit();
+    }
     public void changeToCreate(Person p,int i)
     {
         cp = new CreatePerson();
