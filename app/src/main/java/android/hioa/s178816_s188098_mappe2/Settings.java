@@ -41,6 +41,10 @@ public class Settings extends Activity {
                 setResult(RESULT_OK, iQuit);
                 finish();
                 return true;
+            case android.R.id.home:
+                Intent i = new Intent(this,MainActivity.class);
+                startActivity(i);
+                finish();
             default:
                 return super.onOptionsItemSelected(item);
         }

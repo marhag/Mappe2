@@ -135,6 +135,7 @@ public class MainActivity extends FragmentActivity {
     {
         Intent settings = new Intent(this, Settings.class);
         startActivityForResult(settings, 101);
+        finish();
     }
 
     @Override
@@ -164,6 +165,7 @@ public class MainActivity extends FragmentActivity {
         super.onDestroy();
         saveSv();
     }
+
 
     //service starts at boot, only used for testing
     /*public void startService() {

@@ -44,7 +44,7 @@ public class PrefsFragment extends PreferenceFragment{
                     sv.setService(false);
                     stopService();
                 }
-                sv.saveState();
+                //sv.saveState();
                 return true;
             }
         });
@@ -64,7 +64,7 @@ public class PrefsFragment extends PreferenceFragment{
                 }
                 else
                     sv.setChosenLangEng(newValue.toString());
-                sv.saveState();
+                //sv.saveState();
                 return true;
             }
         });
@@ -77,7 +77,7 @@ public class PrefsFragment extends PreferenceFragment{
                 int[] time = tp.getCalendar();
                 sv.setHour(time[0]);
                 sv.setMin(time[1]);
-                sv.saveState();
+                //sv.saveState();
                 //resets the alarmManager with the new time
                 if(sv.getService()) {
                     stopService();
@@ -119,7 +119,7 @@ public class PrefsFragment extends PreferenceFragment{
 
         sv.setLanguageValue(langCode);
         Log.d("Service selected", langCode + "");
-        sv.saveState();
+        //sv.saveState();
 
 
         Intent intent = new Intent(getActivity(), Settings.class);

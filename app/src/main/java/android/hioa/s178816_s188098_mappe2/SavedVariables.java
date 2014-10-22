@@ -22,10 +22,11 @@ public class SavedVariables {
         loadState();
     }
     public void saveState() {
-        SharedPreferences settings = c.getSharedPreferences(FILENAME, 0);
+        SharedPreferences settings = c.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
         editor.putInt("languageValue", languageValue);
+
         editor.putInt("hour",hour);
         editor.putInt("min",min);
 
@@ -62,6 +63,7 @@ public class SavedVariables {
 
     public void setLanguageValue(int languageValue) {
         this.languageValue = languageValue;
+        saveState();
     }
 
     public String getChosenLangNor() {
@@ -70,6 +72,7 @@ public class SavedVariables {
 
     public void setChosenLangNor(String chosenLangNor) {
         this.chosenLangNor = chosenLangNor;
+        saveState();
     }
 
     public String getChosenLangEng() {
@@ -78,6 +81,7 @@ public class SavedVariables {
 
     public void setChosenLangEng(String chosenLangEng) {
         this.chosenLangEng = chosenLangEng;
+        saveState();
     }
 
     public boolean getService() {
@@ -86,6 +90,7 @@ public class SavedVariables {
 
     public void setService(boolean service) {
         this.service = service;
+        saveState();
     }
 
     public int getHour() {
@@ -94,6 +99,7 @@ public class SavedVariables {
 
     public void setHour(int hour) {
         this.hour = hour;
+        saveState();
     }
 
     public int getMin() {
@@ -102,5 +108,6 @@ public class SavedVariables {
 
     public void setMin(int min) {
         this.min = min;
+        saveState();
     }
 }
