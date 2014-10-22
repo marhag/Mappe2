@@ -1,6 +1,7 @@
 package android.hioa.s178816_s188098_mappe2;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 
 public class MainActivity extends FragmentActivity {
@@ -43,9 +46,8 @@ public class MainActivity extends FragmentActivity {
             transaction.add(R.id.container,listFragment);
             transaction.commit();
             sv = new SavedVariables(this);
-           // getSupportFragmentManager().beginTransaction()
-                   // .add(R.id.container, listFragment).commit();
         }
+
         final Button createBtn = (Button)findViewById(R.id.regNew);
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,5 +180,21 @@ public class MainActivity extends FragmentActivity {
             if(resultCode == RESULT_OK)
                 finish();
         }
+    }
+
+    public void setLanguage(int langCode) {
+        String lang;
+        switch(langCode){
+            case 1:
+                lang = "en";
+                break;
+            default:
+                lang = "no";
+        }
+        Locale newLoc = new Locale(lang);
+        Locale.setDefault(newLoc);
+        Configuration config = new Configuration();
+        config.locale = newLoc;
+        getResources().updateConfiguration(config,null);
     }
 }

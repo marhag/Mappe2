@@ -92,17 +92,15 @@ public class PrefsFragment extends PreferenceFragment{
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 // TODO Auto-generated method stub
-                sv.setLanguageValue(Integer.parseInt(newValue.toString()));
-                Log.d("Service selected", newValue.toString());
-                setLanguage(Integer.parseInt(newValue.toString()));
-                sv.saveState();
+                setLanguage(Integer.parseInt(newValue.toString()), sv);
+
                 return true;
             }
 
         });
     }
 
-    public void setLanguage(int langCode) {
+    public void setLanguage(int langCode, SavedVariables sv) {
         String lang;
         switch(langCode){
             case 1:
@@ -117,8 +115,14 @@ public class PrefsFragment extends PreferenceFragment{
         config.locale = newLoc;
         getResources().updateConfiguration(config,null);
 
+        sv.setLanguageValue(langCode);
+        Log.d("Service selected", langCode + "");
+        sv.saveState();
+
+
         Intent intent = new Intent(getActivity(), Settings.class);
         startActivity(intent);
+        getActivity().finish();
     }
 
     public void startService() {
