@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="55dp"
+            android:layout_margin="5dp"
+            android:textColor="@android:color/white"
+            android:text="@string/add"
+            android:id="@+id/regNew"
+            android:background="@drawable/button_styled"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="@string/overview"
+            android:textStyle="bold"
+            android:id="@+id/headline"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/regNew"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/stroke"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header"
+        android:orientation="horizontal"
+        android:background="@android:color/background_dark">
+
+        </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:id="@+id/container"
+        android:layout_below="@id/stroke">
+    </FrameLayout>
+
+</RelativeLayout>
