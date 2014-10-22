@@ -64,7 +64,7 @@ public class PrefsFragment extends PreferenceFragment{
                 }
                 else
                     sv.setChosenLangEng(newValue.toString());
-                sv.saveState();
+                //sv.saveState();
                 return true;
             }
         });
@@ -87,7 +87,6 @@ public class PrefsFragment extends PreferenceFragment{
             }
         });
 
-        int lang;
 
         ListPreference languagelist = (ListPreference) findPreference("language");
         languagelist.setValueIndex(currentLanguage());// check whats saved
@@ -95,7 +94,7 @@ public class PrefsFragment extends PreferenceFragment{
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 // TODO Auto-generated method stub
-                setLanguage(Integer.parseInt(newValue.toString()));
+                setLanguage(Integer.parseInt(newValue.toString()), sv);
 
                 return true;
             }
