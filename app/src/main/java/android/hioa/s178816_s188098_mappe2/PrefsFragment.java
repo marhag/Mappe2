@@ -50,7 +50,7 @@ public class PrefsFragment extends PreferenceFragment{
         });
 
         final EditTextPreference editTextPreference =  (EditTextPreference)findPreference("PREF_EDITTEXT_MESSAGE");
-        String text = (sv.getLanguageValue()==0)?sv.getChosenLangNor():sv.getChosenLangEng();
+        String text = (currentLanguage()==0)?sv.getChosenLangNor():sv.getChosenLangEng();
         if(text=="")
             text = getActivity().getString(R.string.smsDefault);
         editTextPreference.setText(text);// check whats saved
@@ -58,13 +58,13 @@ public class PrefsFragment extends PreferenceFragment{
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 EditTextPreference etp = (EditTextPreference) preference;
-                if(sv.getLanguageValue()==0)
+                if(currentLanguage()==0)
                 {
                     sv.setChosenLangNor(newValue.toString());
                 }
                 else
                     sv.setChosenLangEng(newValue.toString());
-                //sv.saveState();
+                sv.saveState();
                 return true;
             }
         });
@@ -87,14 +87,15 @@ public class PrefsFragment extends PreferenceFragment{
             }
         });
 
+        int lang;
 
         ListPreference languagelist = (ListPreference) findPreference("language");
-        languagelist.setValueIndex(sv.getLanguageValue());// check whats saved
+        languagelist.setValueIndex(currentLanguage());// check whats saved
         languagelist.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 // TODO Auto-generated method stub
-                setLanguage(Integer.parseInt(newValue.toString()), sv);
+                setLanguage(Integer.parseInt(newValue.toString()));
 
                 return true;
             }
@@ -102,7 +103,7 @@ public class PrefsFragment extends PreferenceFragment{
         });
     }
 
-    public void setLanguage(int langCode, SavedVariables sv) {
+    public void setLanguage(int langCode) {
         String lang;
         switch(langCode){
             case 1:
@@ -116,11 +117,6 @@ public class PrefsFragment extends PreferenceFragment{
         Configuration config = new Configuration();
         config.locale = newLoc;
         getResources().updateConfiguration(config,null);
-
-        sv.setLanguageValue(langCode);
-        Log.d("Service selected", langCode + "");
-        //sv.saveState();
-
 
         Intent intent = new Intent(getActivity(), Settings.class);
         startActivity(intent);
@@ -139,4 +135,13 @@ public class PrefsFragment extends PreferenceFragment{
         alarmManager.cancel(pSmsIntent);
     }
 
+    public int currentLanguage(){
+        String langCode = Locale.getDefault().getLanguage();
+        if(langCode.equals("no"))
+            return 0;
+        else if(langCode.equals("en"))
+            return 1;
+        else
+            return 0;
+    }
 }

@@ -1,6 +1,8 @@
 package android.hioa.s178816_s188098_mappe2;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -43,8 +45,9 @@ public class MainActivity extends FragmentActivity {
         {
             listFragment = new MenuFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.add(R.id.container,listFragment);
+            transaction.add(R.id.container, listFragment);
             transaction.commit();
+
             sv = new SavedVariables(this);
         }
 
@@ -55,8 +58,6 @@ public class MainActivity extends FragmentActivity {
                 changeToCreate(new Person(),0);
             }
         });
-
-
     }
 
 
@@ -182,21 +183,5 @@ public class MainActivity extends FragmentActivity {
             if(resultCode == RESULT_OK)
                 finish();
         }
-    }
-
-    public void setLanguage(int langCode) {
-        String lang;
-        switch(langCode){
-            case 1:
-                lang = "en";
-                break;
-            default:
-                lang = "no";
-        }
-        Locale newLoc = new Locale(lang);
-        Locale.setDefault(newLoc);
-        Configuration config = new Configuration();
-        config.locale = newLoc;
-        getResources().updateConfiguration(config,null);
     }
 }
