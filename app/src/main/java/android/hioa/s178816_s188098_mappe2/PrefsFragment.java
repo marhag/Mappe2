@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -12,6 +13,8 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.util.Log;
+
+import java.util.Locale;
 
 /**
  * Created by marhag on 19.10.14.
@@ -87,15 +90,34 @@ public class PrefsFragment extends PreferenceFragment{
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 // TODO Auto-generated method stub
                 sv.setLanguageValue(Integer.parseInt(newValue.toString()));
-                Log.d("Service selected",newValue.toString());
+                Log.d("Service selected", newValue.toString());
+                setLanguage(Integer.parseInt(newValue.toString()));
                 sv.saveState();
                 return true;
-
-
             }
 
         });
     }
+
+    public void setLanguage(int langCode) {
+        String lang;
+        switch(langCode){
+            case 1:
+                lang = "en";
+                break;
+            default:
+                lang = "no";
+        }
+        Locale newLoc = new Locale(lang);
+        Locale.setDefault(newLoc);
+        Configuration config = new Configuration();
+        config.locale = newLoc;
+        getResources().updateConfiguration(config,null);
+
+        Intent intent = new Intent(getActivity(), Settings.class);
+        startActivity(intent);
+    }
+
     public void startService() {
         Intent intent = new Intent();
         intent.setAction ("android.hioa.s178816_s188098_mappe2.mybroadcastreceiver");

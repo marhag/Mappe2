@@ -45,17 +45,4 @@ public class Settings extends Activity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-    public void setLanguage(String lang) {
-        Locale newLoc = new Locale(lang);
-        Locale.setDefault(newLoc);
-        Configuration config = new Configuration();
-        config.locale = newLoc;
-        getResources().updateConfiguration(config,null);
-
-        //Restarter aktiviteten for å oppdatere språket i nåværende vindu.
-        startActivity(new Intent(this, Settings.class));
-        finish();
-    }
 }
