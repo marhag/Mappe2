@@ -73,7 +73,7 @@ public class PrefsFragment extends PreferenceFragment{
                 sv.setHour(time[0]);
                 sv.setMin(time[1]);
                 sv.saveState();
-                //resets the alarmmanager with the new time
+                //resets the alarmManager with the new time
                 stopService();
                 startService();
                 return true;
@@ -81,8 +81,6 @@ public class PrefsFragment extends PreferenceFragment{
         });
 
 
-        //0 = Norwegian
-        //1 = English
         ListPreference languagelist = (ListPreference) findPreference("language");
         languagelist.setValueIndex(sv.getLanguageValue());// check whats saved
         languagelist.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
