@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialogLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#77000000">
+
+    <RelativeLayout
+        android:id="@+id/mainWrapper"
+        android:layout_width="500dp"
+        android:layout_height="380dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/insbg">
+
+        <TextView
+            android:id="@+id/receiptHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="@string/customService"
+            android:textColor="@android:color/black"
+            android:textSize="35sp" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/receiptHead"
+            android:background="@android:color/black"
+            android:orientation="horizontal" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_below="@id/linearLayout">
+
+
+            <RelativeLayout
+                android:id="@+id/messageField"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yourMessage"
+                    android:id="@+id/labelMessage"
+                    android:textSize="25sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="10dp"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:inputType="textMultiLine"
+                    android:layout_below="@id/labelMessage"
+                    android:ems="12"
+                    android:id="@+id/serviceMessage" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/timeFiled"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/messageField">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/timeTitle"
+                    android:id="@+id/labelTime"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp"/>
+
+                <TimePicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/labelTime"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/timePicker" />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+        <Button
+            android:id="@+id/confirmBtn"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_styled"
+            android:text="@string/save"
+            android:textSize="25sp"
+            android:layout_marginBottom="5dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

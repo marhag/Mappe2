@@ -20,6 +20,17 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true" />
+        <Button
+            android:layout_width="75dp"
+            android:layout_height="55dp"
+            android:layout_margin="5dp"
+            android:textColor="@android:color/white"
+            android:text="@string/editService"
+            android:id="@+id/edit"
+            android:background="@drawable/button_styled"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
 
         <TextView
             android:layout_width="wrap_content"

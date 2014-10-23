@@ -1,9 +1,13 @@
 package android.hioa.s178816_s188098_mappe2;
 
+import android.app.AlarmManager;
+import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -12,7 +16,9 @@ import android.view.MenuItem;
 import android.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.util.Locale;
 
@@ -54,6 +60,14 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onClick(View view) {
                 changeToCreate(new Person(),0);
+            }
+        });
+
+        final Button editBtn = (Button)findViewById(R.id.edit);
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMessageOverlay();
             }
         });
     }
@@ -172,12 +186,17 @@ public class MainActivity extends FragmentActivity {
     }
 
 
-    //service starts at boot, only used for testing
-    /*public void startService() {
+    public void startService() {
         Intent intent = new Intent();
         intent.setAction ("android.hioa.s178816_s188098_mappe2.mybroadcastreceiver");
-        sendBroadcast(intent);
-    }*/
+        this.sendBroadcast(intent);
+    }
+    public void stopService()
+    {
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        PendingIntent pSmsIntent = PendingIntent.getService(this, 0, new Intent(this, SMSService.class), 0);
+        alarmManager.cancel(pSmsIntent);
+    }
 
     //Avslutter appen fra Settings
     @Override
@@ -188,4 +207,57 @@ public class MainActivity extends FragmentActivity {
                 finish();
         }
     }
+    private void showMessageOverlay() {
+
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        dialog.setContentView(R.layout.set_message);
+
+        SavedVariables saved = new SavedVariables(this);
+
+        final EditText editMessage = (EditText)dialog.findViewById(R.id.serviceMessage);
+        String text = (currentLanguage()==0)?sv.getChosenLangNor():sv.getChosenLangEng();
+        if(text=="")
+            text = this.getString(R.string.smsDefault);
+        editMessage.setText(text);
+
+        final TimePicker time = (TimePicker)dialog.findViewById(R.id.timePicker);
+        time.setIs24HourView(true);
+        time.setCurrentHour(saved.getHour());
+        time.setCurrentMinute(saved.getMin());
+
+        final Button btn = (Button)dialog.findViewById(R.id.confirmBtn);
+        btn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if(currentLanguage()==0)
+                {
+                    sv.setChosenLangNor(editMessage.getText().toString());
+                }
+                else
+                    sv.setChosenLangEng(editMessage.getText().toString());
+                sv.setHour(time.getCurrentHour());
+                sv.setMin(time.getCurrentMinute());
+
+                if(sv.getService()) {
+                    stopService();
+                    startService();
+                }
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+    }
+
+    public int currentLanguage(){
+        String langCode = Locale.getDefault().getLanguage();
+        if(langCode.equals("no"))
+            return 0;
+        else if(langCode.equals("en"))
+            return 1;
+        else
+            return 0;
+    }
+
 }

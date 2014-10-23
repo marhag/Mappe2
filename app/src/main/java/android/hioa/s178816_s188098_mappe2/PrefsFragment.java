@@ -49,45 +49,6 @@ public class PrefsFragment extends PreferenceFragment{
             }
         });
 
-        final EditTextPreference editTextPreference =  (EditTextPreference)findPreference("PREF_EDITTEXT_MESSAGE");
-        String text = (currentLanguage()==0)?sv.getChosenLangNor():sv.getChosenLangEng();
-        if(text=="")
-            text = getActivity().getString(R.string.smsDefault);
-        editTextPreference.setText(text);// check whats saved
-        editTextPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                EditTextPreference etp = (EditTextPreference) preference;
-                if(currentLanguage()==0)
-                {
-                    sv.setChosenLangNor(newValue.toString());
-                }
-                else
-                    sv.setChosenLangEng(newValue.toString());
-                //sv.saveState();
-                return true;
-            }
-        });
-
-        final TimePreference timePreference = (TimePreference)findPreference("TIMEPREF");
-        timePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object o) {
-                TimePreference tp = (TimePreference)preference;
-                int[] time = tp.getCalendar();
-                sv.setHour(time[0]);
-                sv.setMin(time[1]);
-                //sv.saveState();
-                //resets the alarmManager with the new time
-                if(sv.getService()) {
-                    stopService();
-                    startService();
-                }
-                return true;
-            }
-        });
-
-
         ListPreference languagelist = (ListPreference) findPreference("language");
         languagelist.setValueIndex(currentLanguage());// check whats saved
         languagelist.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {

@@ -10,8 +10,6 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
-		Toast.makeText(context, "I BroadcastReceiver", Toast.LENGTH_SHORT)
-				.show();
 
 		Intent i = new Intent(context, PeriodicService.class);
 		context.startService(i);

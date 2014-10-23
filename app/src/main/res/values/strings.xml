@@ -32,11 +32,17 @@
 
     <string name="setMessage">Birthday message</string>
     <string name="yourMessage">Your message</string>
-    <string name="customize">Customize your birthday message</string>
+    <string name="customize">Customize your message</string>
 
     <string name="setTime">Service time</string>
-    <string name="timeTitle">Set time for sms-service</string>
+    <string name="timeTitle">Time for sms-service</string>
     <string name="set">Ok</string>
     <string name="cancel">Cancel</string>
+
+    <string name="customService">Customize service</string>
+
+    <string name="editService">Edit\nService</string>
+    <string name="editService2">Edit Service</string>
+
 
 </resources>
