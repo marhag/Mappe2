@@ -72,6 +72,9 @@ public class PrefsFragment extends PreferenceFragment{
             default:
                 lang = "no";
         }
+
+        getActivity().getSharedPreferences("language", 0).edit().putInt("lang", langCode).commit();
+
         Locale newLoc = new Locale(lang);
         Locale.setDefault(newLoc);
         Configuration config = new Configuration();
@@ -97,11 +100,19 @@ public class PrefsFragment extends PreferenceFragment{
 
     public int currentLanguage(){
         String langCode = Locale.getDefault().getLanguage();
-        if(langCode.equals("no"))
+        Log.d("langcode", langCode);
+        if(langCode.equals("no") || langCode.equals("nb"))
             return 0;
         else if(langCode.equals("en"))
             return 1;
         else
-            return 0;
+            return 1;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        int lang = getActivity().getSharedPreferences("language", 0).getInt("lang", 0);
+        setLanguage(lang);
+        super.onSaveInstanceState(outState);
     }
 }

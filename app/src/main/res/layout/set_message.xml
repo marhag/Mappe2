@@ -19,7 +19,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="@string/customService"
+            android:text="@string/editMessage"
             android:textColor="@android:color/black"
             android:textSize="25sp" />
         <LinearLayout

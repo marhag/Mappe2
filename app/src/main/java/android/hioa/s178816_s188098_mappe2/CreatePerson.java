@@ -118,7 +118,7 @@ public class CreatePerson extends Fragment{
             public void onClick(View view) {
                 if(validateInput()) {
                     savePerson();
-                    ((MainActivity) getActivity()).changeFragment(0, null);
+                    getActivity().getFragmentManager().popBackStack();
                 }
             }
         });
@@ -128,7 +128,7 @@ public class CreatePerson extends Fragment{
             @Override
             public void onClick(View view) {
                 deletePerson();
-                ((MainActivity)getActivity()).changeFragment(0,null);
+                getActivity().getFragmentManager().popBackStack();
             }
         });
 

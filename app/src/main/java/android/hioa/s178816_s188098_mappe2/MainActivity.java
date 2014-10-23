@@ -1,11 +1,11 @@
 package android.hioa.s178816_s188098_mappe2;
 
+import android.app.FragmentTransaction;
 import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,7 +33,11 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        int langCode = Locale.getDefault().getLanguage().equals("en") ? 1:0;
+        getSharedPreferences("language", 0).edit().putInt("lang", langCode).commit();
+
         DBHandler db = new DBHandler(this);
+
         /*Person p = new Person("Mons","Monsen", 12341234,"26/11/1993");
         p.setCustomMessage("NÅ SKAL VI SE HER");
 
@@ -121,12 +125,14 @@ public class MainActivity extends FragmentActivity {
         }
 
     }
+
     public void changeToMenu()
     {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, listFragment);
         transaction.commit();
     }
+
     public void changeToCreate(Person p,int i)
     {
         cp = new CreatePerson();
@@ -147,6 +153,7 @@ public class MainActivity extends FragmentActivity {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, cp);
         transaction.addToBackStack(null);
+        transaction.setTransition(FragmentTransaction.TRANSIT_UNSET);
         transaction.commit();
     }
 
@@ -159,9 +166,8 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if(getFragmentManager().getBackStackEntryCount() > 0) {
-            changeFragment(0, null);
-        }
+        if(getFragmentManager().getBackStackEntryCount() > 0)
+            getFragmentManager().popBackStack();
         else
             super.onBackPressed();
     }
@@ -208,6 +214,7 @@ public class MainActivity extends FragmentActivity {
                 finish();
         }
     }
+
     private void showMessageOverlay() {
 
         final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
@@ -261,4 +268,26 @@ public class MainActivity extends FragmentActivity {
             return 0;
     }
 
+    public void setLanguage(int langCode){
+        String lang;
+        switch(langCode){
+            case 1:
+                lang = "en";
+                break;
+            default:
+                lang = "no";
+        }
+
+        Locale newLoc = new Locale(lang);
+        Locale.setDefault(newLoc);
+        Configuration config = new Configuration();
+        config.locale = newLoc;
+        getResources().updateConfiguration(config,null);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        setLanguage(getSharedPreferences("language", 0).getInt("lang", 0));
+        super.onSaveInstanceState(outState);
+    }
 }
