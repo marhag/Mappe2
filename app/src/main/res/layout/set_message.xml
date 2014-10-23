@@ -21,7 +21,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/customService"
             android:textColor="@android:color/black"
-            android:textSize="35sp" />
+            android:textSize="25sp" />
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="fill_parent"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/yourMessage"
                 android:id="@+id/labelMessage"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:layout_marginLeft="10dp"/>
 
@@ -52,6 +52,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:inputType="textMultiLine"
+                android:maxLines="2"
                 android:layout_below="@id/labelMessage"
                 android:ems="12"
                 android:id="@+id/serviceMessage" />
@@ -68,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/timeTitle"
                 android:id="@+id/labelTime"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:layout_marginLeft="10dp"/>
 

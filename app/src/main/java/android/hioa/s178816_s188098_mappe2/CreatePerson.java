@@ -34,6 +34,7 @@ public class CreatePerson extends Fragment{
         TextView headline = (TextView)getActivity().findViewById(R.id.headline);
         headline.setText(getString(R.string.addContact));
         getActivity().findViewById(R.id.regNew).setVisibility(View.INVISIBLE);
+        getActivity().findViewById(R.id.edit).setVisibility(View.INVISIBLE);
 
         if (savedInstanceState != null) {
             id = savedInstanceState.getInt("id");

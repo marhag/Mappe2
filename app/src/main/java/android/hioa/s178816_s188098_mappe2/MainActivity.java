@@ -114,6 +114,7 @@ public class MainActivity extends FragmentActivity {
                 getActionBar().setDisplayHomeAsUpEnabled(false);
                 headline.setText(getString(R.string.overview));
                 findViewById(R.id.regNew).setVisibility(View.VISIBLE);
+                findViewById(R.id.edit).setVisibility(View.VISIBLE);
                 getFragmentManager().popBackStack();
                 listFragment.updateList();
                 return;
