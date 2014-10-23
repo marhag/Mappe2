@@ -45,8 +45,11 @@ public class TimePreference extends DialogPreference {
     @Override
     protected void onBindDialogView(View v) {
         super.onBindDialogView(v);
-        picker.setCurrentHour(calendar.get(Calendar.HOUR_OF_DAY));
-        picker.setCurrentMinute(calendar.get(Calendar.MINUTE));
+        /*picker.setCurrentHour(calendar.get(Calendar.HOUR_OF_DAY));
+        picker.setCurrentMinute(calendar.get(Calendar.MINUTE));*/
+        SavedVariables sv = new SavedVariables(getContext());
+        picker.setCurrentHour(sv.getHour());
+        picker.setCurrentMinute(sv.getMin());
     }
 
     @Override
@@ -80,6 +83,7 @@ public class TimePreference extends DialogPreference {
                 calendar.setTimeInMillis(Long.parseLong(getPersistedString((String) defaultValue)));
             }
         } else {
+            DBHandler db = new DBHandler(getContext());
             if (defaultValue == null) {
                 calendar.setTimeInMillis(System.currentTimeMillis());
             } else {
