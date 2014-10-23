@@ -27,8 +27,10 @@ public class SMSService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-		//Intent i = new Intent(this,MainActivity.class);
-		//PendingIntent pIntent = PendingIntent.getActivity(this, 0, i, 0);
+        Intent intent2= new Intent(getApplicationContext(), MainActivity.class);
+        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		/*Intent i = new Intent(this,null);*/
+		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent2, 0);
 
         standardMessage= getApplication().getString(R.string.smsDefault);
         Log.d("Service","true");
@@ -38,11 +40,14 @@ public class SMSService extends Service {
             Log.d("Service","personen er: " + person.getFirstname());
             sendSms(person);
             //start notification
-            Notification noti = new Notification.Builder(this)
-                    .setContentTitle(getApplication().getString(R.string.sendtSms)).
-                    setContentText(getApplication().getString(R.string.sendtSmsTo)).
-                    setSmallIcon(R.drawable.ic_launcher).build();//.setContentIntent(pIntent)
-            noti.flags = Notification.FLAG_AUTO_CANCEL;
+            Notification noti = new Notification.Builder(getApplicationContext())
+                    .setContentTitle(getApplication()
+                    .getString(R.string.sendtSms)).
+                    setContentText(getApplication()
+                    .getString(R.string.sendtSmsTo)).setContentIntent(pIntent).setAutoCancel(true).
+                    setSmallIcon(R.drawable.icon2).build();//.setContentIntent(pIntent)
+            noti.flags = Notification.DEFAULT_LIGHTS | Notification.FLAG_AUTO_CANCEL;
+
             notificationManager.notify(0, noti);
 
         }
