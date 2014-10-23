@@ -153,6 +153,7 @@ public class MainActivity extends FragmentActivity {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, cp);
         transaction.addToBackStack(null);
+        transaction.setTransition(FragmentTransaction.TRANSIT_UNSET);
         transaction.commit();
     }
 
@@ -166,7 +167,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     public void onBackPressed() {
         if(getFragmentManager().getBackStackEntryCount() > 0)
-            changeFragment(0,null);
+            getFragmentManager().popBackStack();
         else
             super.onBackPressed();
     }
