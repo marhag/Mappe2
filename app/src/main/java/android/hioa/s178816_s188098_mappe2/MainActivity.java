@@ -40,13 +40,13 @@ public class MainActivity extends FragmentActivity {
         if(savedInstanceState!=null)
         {
         }
-        else
-        {
+        else{
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.add(R.id.container, listFragment,"liste");
+            transaction.add(R.id.container, listFragment, "liste");
             transaction.commit();
-            //sv = new SavedVariables(this);
         }
+            //sv = new SavedVariables(this);
+        //}
 
         sv = new SavedVariables(this);
         final Button createBtn = (Button)findViewById(R.id.regNew);
@@ -144,8 +144,9 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if(getFragmentManager().getBackStackEntryCount() > 0)
-            changeFragment(0,null);
+        if(getFragmentManager().getBackStackEntryCount() > 0) {
+            changeFragment(0, null);
+        }
         else
             super.onBackPressed();
     }
