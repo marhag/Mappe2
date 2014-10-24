@@ -117,10 +117,13 @@ public class MainActivity extends FragmentActivity {
             default:
                 getActionBar().setDisplayHomeAsUpEnabled(false);
                 headline.setText(getString(R.string.overview));
+               // finish();
+               // startActivity(getIntent());
                 findViewById(R.id.regNew).setVisibility(View.VISIBLE);
                 findViewById(R.id.edit).setVisibility(View.VISIBLE);
                 getFragmentManager().popBackStack();
-                listFragment.updateList();
+                //listFragment.updateList(this);
+                changeToMenu();
                 return;
         }
 
@@ -128,6 +131,7 @@ public class MainActivity extends FragmentActivity {
 
     public void changeToMenu()
     {
+        listFragment = new MenuFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, listFragment);
         transaction.commit();

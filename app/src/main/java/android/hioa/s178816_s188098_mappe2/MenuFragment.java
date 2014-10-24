@@ -1,5 +1,6 @@
 package android.hioa.s178816_s188098_mappe2;
 
+import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.app.ListFragment;
@@ -35,6 +36,13 @@ public class MenuFragment extends ListFragment {
         updateList();
 	}
 
+    public void updateList(Context c){
+        db = new DBHandler(c);
+        menuListPersons = db.getAllPersons();
+
+        adapter = new MenuListAdapter(getActivity(), menuListPersons);
+        setListAdapter(adapter);
+    }
     public void updateList(){
         menuListPersons = db.getAllPersons();
 
