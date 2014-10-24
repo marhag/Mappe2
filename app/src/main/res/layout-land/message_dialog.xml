@@ -65,6 +65,7 @@
                         android:inputType="textMultiLine"
                         android:layout_below="@id/labelMessage"
                         android:ems="12"
+                        android:maxLines="5"
                         android:id="@+id/serviceMessage" />
                 </RelativeLayout>
                 <RelativeLayout
