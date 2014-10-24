@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Personregister</string>
+    <string name="app_name">Bursdagsmelding</string>
     <string name="action_settings">Innstillinger</string>
     <string name="quit">Avslutt</string>
     <string name="imgdesc">Desc</string>
@@ -11,8 +11,7 @@
     <string name="delete">Slett</string>
     <string name="overview">Oversikt</string>
     <string name="addContact">Registrer kontakt</string>
-
-
+    <string name="editContact">Rediger kontakt</string>
 
     <string name="firstname">Fornavn:</string>
     <string name="lastname">Etternavn:</string>

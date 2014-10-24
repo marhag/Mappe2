@@ -7,13 +7,10 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,8 +22,8 @@ import java.util.Locale;
 
 public class MainActivity extends FragmentActivity {
 
-    private MenuFragment listFragment;
-    private CreatePerson cp;
+    private ContactList listFragment;
+    private EditContact cp;
     private SavedVariables sv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +43,7 @@ public class MainActivity extends FragmentActivity {
         db.addPerson(new Person("Nils","Pettersen", 12341234,"20/10/2004"));
         for(Person p : db.getAllPersons())
             Log.d("Denne finnes",p.getFirstname() + " " + p.getDayMonth());*/
-        listFragment = new MenuFragment();
+        listFragment = new ContactList();
         if(savedInstanceState!=null)
         {
         }
@@ -131,7 +128,7 @@ public class MainActivity extends FragmentActivity {
 
     public void changeToMenu()
     {
-        listFragment = new MenuFragment();
+        listFragment = new ContactList();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, listFragment);
         transaction.commit();
@@ -139,7 +136,7 @@ public class MainActivity extends FragmentActivity {
 
     public void changeToCreate(Person p,int i)
     {
-        cp = new CreatePerson();
+        cp = new EditContact();
         Bundle args = new Bundle();
         args.putInt("id",p.getId());
         args.putString("firstname",p.getFirstname());
@@ -222,7 +219,7 @@ public class MainActivity extends FragmentActivity {
     private void showMessageOverlay() {
 
         final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-        dialog.setContentView(R.layout.set_message);
+        dialog.setContentView(R.layout.message_dialog);
 
         SavedVariables saved = new SavedVariables(this);
 

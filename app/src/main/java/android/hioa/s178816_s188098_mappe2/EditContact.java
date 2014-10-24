@@ -2,7 +2,6 @@ package android.hioa.s178816_s188098_mappe2;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
-import java.util.regex.Pattern;
 
 /**
  * Created by marhag on 18.10.14.
  */
-public class CreatePerson extends Fragment{
+public class EditContact extends Fragment{
     private int id,phone;
     private String firstname, lastname, date,message, type;
 
@@ -31,8 +29,7 @@ public class CreatePerson extends Fragment{
                              Bundle savedInstanceState) {
 
         db = new DBHandler(getActivity());
-        TextView headline = (TextView)getActivity().findViewById(R.id.headline);
-        headline.setText(getString(R.string.addContact));
+
         getActivity().findViewById(R.id.regNew).setVisibility(View.INVISIBLE);
         getActivity().findViewById(R.id.edit).setVisibility(View.INVISIBLE);
 
@@ -56,7 +53,7 @@ public class CreatePerson extends Fragment{
             type = getArguments().getString("type");
         }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.create_layout, container, false);
+        return inflater.inflate(R.layout.edit_contact, container, false);
     }
 
     @Override
@@ -106,11 +103,16 @@ public class CreatePerson extends Fragment{
             editPhone.setText(phone+"");
         editMessage.setText(message);
 
-        if(type == "EDIT")
+        //Tilpass header og knapper
+        TextView headline = (TextView)getActivity().findViewById(R.id.headline);
+        if(type == "EDIT") {
+            headline.setText(getString(R.string.editContact));
             getActivity().findViewById(R.id.deletePersonBtn).setVisibility(View.VISIBLE);
-        else
+        }
+        else {
+            headline.setText(getString(R.string.addContact));
             getActivity().findViewById(R.id.deletePersonBtn).setVisibility(View.GONE);
-
+        }
 
         final Button regBtn = (Button)getActivity().findViewById(R.id.addPersonBtn);
         regBtn.setOnClickListener(new View.OnClickListener(){
@@ -168,11 +170,11 @@ public class CreatePerson extends Fragment{
         String error = "";
 
         if(!editFirst.getText().toString().matches("[A-Åa-å \\-]{1,30}"))
-            error = "Feil i fornavn";
+            error = "Fornavn må være bokstaver eller mellomrom. Maks 30 tegn.";
         else if(!editLast.getText().toString().matches("[A-Åa-å \\-]{1,30}"))
-            error = "Feil i etternavn";
+            error = "Etternavn må være bokstaver eller mellomrom. Maks 30 tegn.";
         else if(!editPhone.getText().toString().matches("\\d{8}"))
-            error = "Feil i telefonnummer";
+            error = "Telefonnummer må være 8 siffer uten mellomrom.";
 
         if(error != "")
             valid = false;

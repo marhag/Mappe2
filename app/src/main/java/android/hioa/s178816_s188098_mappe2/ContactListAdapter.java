@@ -2,7 +2,6 @@ package android.hioa.s178816_s188098_mappe2;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +10,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class MenuListAdapter extends BaseAdapter {
+public class ContactListAdapter extends BaseAdapter {
 
     private Context context;
     private List<Person> menuListPerson;
 
-    MenuListAdapter(Context context, List<Person> menuListPerson) {
+    ContactListAdapter(Context context, List<Person> menuListPerson) {
         this.context = context;
         this.menuListPerson = menuListPerson;
     }
@@ -45,7 +44,7 @@ public class MenuListAdapter extends BaseAdapter {
         if (convertView == null) {
             LayoutInflater mInflater = (LayoutInflater) context
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = mInflater.inflate(R.layout.menu_list_item, null);
+            convertView = mInflater.inflate(R.layout.contact_list_item, null);
         }
 
         TextView txtName = (TextView) convertView.findViewById(R.id.Name);

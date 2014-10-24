@@ -4,23 +4,20 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.app.ListFragment;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.List;
 
-public class MenuFragment extends ListFragment {
+public class ContactList extends ListFragment {
 
 	TypedArray menuIcons;
 
     DBHandler db;
-	MenuListAdapter adapter;
+	ContactListAdapter adapter;
 	private List<Person> menuListPersons;
 
-    public MenuFragment() {
+    public ContactList() {
     }
 
 	@Override
@@ -40,13 +37,13 @@ public class MenuFragment extends ListFragment {
         db = new DBHandler(c);
         menuListPersons = db.getAllPersons();
 
-        adapter = new MenuListAdapter(getActivity(), menuListPersons);
+        adapter = new ContactListAdapter(getActivity(), menuListPersons);
         setListAdapter(adapter);
     }
     public void updateList(){
         menuListPersons = db.getAllPersons();
 
-        adapter = new MenuListAdapter(getActivity(), menuListPersons);
+        adapter = new ContactListAdapter(getActivity(), menuListPersons);
         setListAdapter(adapter);
     }
 
